@@ -1,0 +1,254 @@
+@import "./custom.scss";
+@import "./font.scss";
+@import "./mediaqueries.scss";
+.card-section {
+  .card {
+    background: $secondary-color;
+    border: 1px solid $secondary-color;
+    position: relative;
+    text-align: center;
+    border-radius: 8px;
+    padding: 21px 11px;
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+    .card_icon-banner {
+      background: $white-color;
+      width: 45px;
+      height: 45px;
+      display: flex;
+      position: absolute;
+      border-radius: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 1rem;
+      img {
+        margin: auto;
+        width: 30px;
+      }
+    }
+    .card_icon {
+      position: absolute;
+      border-radius: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 10px;
+      img {
+        width: 40px;
+        border-radius: 6px;
+      }
+    }
+    .svgIcon {
+      position: absolute;
+      border-radius: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 1rem;
+      svg {
+        color: $white-color;
+        font-size: 1.5rem;
+      }
+    }
+    .bg-bannner {
+      background: $white-color;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .pdf {
+        transform: scale(0.6);
+      }
+      img {
+        transform: scale(0.7);
+      }
+    }
+  }
+  .card_link {
+    padding: 21px 39px 21px 12px;
+    .card {
+      padding-right: 61px !important;
+      padding-left: 24px !important;
+    }
+  }
+  .theme_dahwoo-card {
+    border-radius: 20px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    // img {
+    //   width: 24px;
+    //   height: 24px;
+    // }
+  }
+  .customCard_dahwoo {
+    position: relative;
+    img {
+      height: 201.38px;
+      width: 100%;
+      position: relative;
+      border-radius: 12px;
+    }
+    .customCard_dahwoo-bottom {
+      box-shadow: 6.43px 7.66px 10px rgb(167 0 250 / 10%);
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
+      border-radius: 0px 0px 12px 12px;
+      padding: 24px;
+      width: 100%;
+      position: absolute;
+      bottom: 3px;
+      justify-content: space-between;
+      display: flex;
+      align-items: center;
+      color: #fff;
+      p {
+        font-family: "Quicksand";
+        font-style: normal;
+        font-weight: 600;
+        font-size: 15px;
+        line-height: 22px;
+        display: flex;
+        align-items: center;
+        color: $white-color;
+      }
+    }
+  }
+  p {
+    color: $white-color;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 127.9%;
+    text-decoration: none;
+    z-index: 1;
+    text-align: center;
+  }
+}
+.theme-consmy {
+  .card-section {
+    .card {
+      border: 0.6px solid $white-color;
+    }
+    .youtube {
+      .card {
+        border: 1px solid $black-color;
+      }
+    }
+  }
+}
+.theme-phiverse,
+.theme-dahwoo {
+  .card-section {
+    .card {
+      background: #ffffff;
+      box-shadow: 6.43px 7.66px 10px rgba(167, 0, 250, 0.1);
+      border-radius: 20px;
+      border: none;
+      .bg-bannner {
+        width: 44px;
+        height: 44px;
+        img {
+          transform: scale(1);
+        }
+      }
+    }
+    p {
+      font-weight: 700;
+      font-size: 18px;
+      @include media440 {
+        font-size: 16px;
+      }
+      @include media390 {
+        font-size: 15px;
+      }
+      @include media370 {
+        font-size: 13px;
+      }
+    }
+  }
+}
+.theme-etyne {
+  .card-section {
+    .card {
+      background: $white-color;
+      border: 1px solid #0e334c;
+      box-shadow: 2px 3px 0px 2px #0e334c;
+      border-radius: 4px;
+      padding-left: 55px;
+      padding-right: 24px;
+      transition: 0.5s ease;
+      p {
+        font-family: "Quicksand";
+        font-weight: 600;
+        font-size: 18px;
+        color: #222222;
+      }
+      .bg-bannner {
+        background: transparent;
+        img {
+          transform: scale(1);
+          width: 45px;
+        }
+      }
+    }
+    .card:hover {
+      background: #0e334c;
+      border: 1px solid #1d313e;
+      box-shadow: 2px 3px 0px 2px #1d313e;
+      p {
+        color: $white-color;
+      }
+    }
+    .customLinkCard {
+      padding: 21px 11px;
+    }
+  }
+}
+.theme-riorpad,
+.theme-buwayne {
+  .card-section {
+    .card {
+      padding-right: 72px;
+      padding-left: 24px;
+      .card_icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+        height: 50px;
+        .icon {
+          justify-content: center;
+          align-items: center;
+          width: 48px;
+          height: 48px;
+        }
+      }
+    }
+    .customLinkCard {
+      padding: 21px 11px;
+    }
+    p {
+      font-family: "Poppins", sans-serif;
+      font-weight: 600;
+      font-size: 18px;
+      // color: #47556d;
+    }
+    .cardItem {
+      .card {
+        padding-left: 61px;
+        padding-right: 24px;
+      }
+    }
+  }
+}
+.theme-buwayne {
+  .card {
+    .svgIcon {
+      svg {
+        color: #60656b;
+      }
+    }
+  }
+}
