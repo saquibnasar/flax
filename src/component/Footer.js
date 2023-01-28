@@ -15,7 +15,7 @@ export default function Footer(props) {
         <div className="contaier">
           <div className="">
             <a
-              href="https://flax.ai/"
+              href="https://www.flaxapp.co/"
               className="caardClub"
               target="_blank"
               rel="noopener noreferrer"
