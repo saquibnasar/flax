@@ -1,0 +1,76 @@
+@import "./custom.scss";
+@import "./utilityclasses.scss";
+@import "./font.scss";
+.bonton {
+  .heroBar {
+    position: absolute;
+    bottom: -110px;
+    padding: 24px 0px 16px;
+    width: calc(100% - 112px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #323232;
+    box-shadow: 0px 2px 4px rgb(0 0 0 / 15%);
+    border-radius: 12px;
+    h1 {
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 28px;
+      line-height: 36px;
+      color: $white-color;
+    }
+    h2 {
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 24px;
+      color: $white-color;
+    }
+    h3 {
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 17px;
+      line-height: 24px;
+      color: $white-color;
+    }
+    .heroIcon {
+      margin-top: 40px;
+      .social_media {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        border-top: 1px solid #f5f7fa;
+        padding-top: 9px;
+      }
+    }
+    .heroBar-image {
+      position: absolute;
+      top: -40px;
+      right: 32px;
+      img {
+        border-radius: 50%;
+        width: 90px;
+        height: 90px;
+      }
+    }
+  }
+  .noBanerHeroBar {
+    position: unset;
+    width: 100%;
+    transform: unset;
+    margin-top: 3rem;
+    .heroBar-image {
+      right: 95px;
+    }
+  }
+  .bontonIcon {
+    img {
+      width: 32px;
+      height: 32px;
+    }
+  }
+}

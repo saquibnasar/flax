@@ -252,3 +252,32 @@
     }
   }
 }
+.theme-bonton {
+  .card-section {
+    .card {
+      background: #323232;
+      box-shadow: 1px 1px 10px #999999;
+      border-radius: 5px;
+      padding: 32px 20px;
+
+      .card_icon {
+        filter: drop-shadow(1px 1px 10px #999999);
+        border-radius: 5px;
+        width: 55px;
+        height: 55px;
+        background: transparent;
+        img {
+          width: 55px;
+        }
+      }
+      p {
+        font-family: "Karla";
+        font-style: normal;
+        font-weight: 500;
+        font-size: 28px;
+        line-height: 32px;
+        color: $white-color;
+      }
+    }
+  }
+}

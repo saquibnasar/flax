@@ -218,6 +218,9 @@
 .mt-0 {
   margin-top: 0rem !important;
 }
+.px-4 {
+  padding: 0px 24px;
+}
 .p-2 {
   padding: 8px !important;
 }
@@ -281,6 +284,9 @@
 .p-relative {
   position: relative;
 }
+.p-fixed {
+  position: fixed !important;
+}
 .animationMOde {
   position: absolute;
   top: 0;
@@ -315,7 +321,9 @@
   @include media440 {
     width: 95%;
   }
-  .logo {
+
+  .logo,
+  .logo-only {
     img {
       width: 50px;
       height: 50px;
@@ -327,7 +335,7 @@
     font-family: "Poppins";
     font-style: normal;
     font-weight: 600;
-    font-size: 22px;
+    font-size: 17px;
     line-height: 23px;
     text-align: center;
   }
@@ -361,6 +369,50 @@
     .share {
       background: $white-color;
       color: #222;
+    }
+  }
+}
+
+.theme-bonton {
+  .TopBar {
+    position: relative;
+    z-index: 1000;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 768px;
+    top: 0px;
+    background: #111111;
+    box-shadow: unset;
+    backdrop-filter: unset;
+    border-radius: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    // transition: 0.5s ease-in-out;
+    transition: position 150ms ease;
+    .share {
+      border: 1px solid #323232;
+      border-radius: 24px;
+      display: flex;
+      padding: 11px 16px;
+      font-size: 1.5rem;
+      gap: 14px;
+      justify-content: center;
+      align-items: center;
+      color: #323232;
+      width: unset;
+      height: unset;
+      background: transparent;
+      p {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 18px;
+        color: #323232;
+      }
     }
   }
 }

@@ -24,7 +24,7 @@ export default function Card({ StandardLinks, CustomLinks, theme, heroData }) {
           className={
             theme === "dahwoo" || theme === "etyne"
               ? "social_media d-flex justify-content-center align-items-center mt-4 gap-2"
-              : ""
+              : "social_media"
           }
         >
           {StandardLinks
@@ -197,12 +197,18 @@ export default function Card({ StandardLinks, CustomLinks, theme, heroData }) {
                     </a>
                   );
                 }
-                if (theme === "dahwoo" || theme === "etyne") {
+                if (
+                  theme === "dahwoo" ||
+                  theme === "etyne" ||
+                  theme === "bonton"
+                ) {
                   return (
                     <a
                       key={id}
                       href={link}
-                      className={theme === "dahwoo" ? "theme_dahwoo-card" : ""}
+                      className={
+                        theme === "dahwoo" ? "theme_dahwoo-card" : "bontonIcon"
+                      }
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -297,6 +303,7 @@ export default function Card({ StandardLinks, CustomLinks, theme, heroData }) {
                 );
               }
               if (theme === "dahwoo" && !(value.IconUrl === null)) {
+                console.log(theme);
                 return (
                   <div className="mt-4">
                     <a

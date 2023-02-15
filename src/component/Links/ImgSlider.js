@@ -7,7 +7,7 @@ export default function ImgSlider(props) {
     <>
       <div className={`swiper mySwiper ${props.border} ${props.className}`}>
         <div className={`swiper-wrapper ${props.className}`}>
-          <Slider {...props.settings}>
+          <Slider {...props.settings} ref={props.sliderRef}>
             {props.sliderImg.map((value, id) => {
               if (value.isActive) {
                 return (

@@ -57,6 +57,13 @@ body:has(.flax)::-webkit-scrollbar {
     margin: 0 20px;
   }
 }
+.main-container.theme-bonton {
+  background: #5c5c5c;
+  max-width: 768px;
+  .container {
+    margin: 0 56px;
+  }
+}
 .main-container.theme-phiverse {
   background: #f5f5f7;
 }
@@ -411,4 +418,9 @@ a {
 }
 .h-100vh {
   height: 100vh;
+}
+.soundcloud {
+  iframe {
+    border-radius: 16px;
+  }
 }

@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import TextLoader from "../TextLoader";
 import CloseBtn from "./CloseBtn";
 import ImgSlider from "./ImgSlider";
 import { CSSTransition } from "react-transition-group";
 import NeumorphicContainer from "../NeumorphicContainer";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { faLink } from "@fortawesome/free-solid-svg-icons";
 export default function Slider({ data, linkHandler, isClosed, theme, mode }) {
   const [currentPage, setCurrentPage] = useState(0);
   const [title, setTitle] = useState(data[0].Title);
@@ -39,7 +42,21 @@ export default function Slider({ data, linkHandler, isClosed, theme, mode }) {
       setCurrentPage(current);
     },
   };
-
+  const sliderRef = useRef();
+  const settingsBonton = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    // cssEase: "linear",
+    // fade: true,
+    initialSlide: 0,
+    afterChange: (current) => {
+      changeTextHandler(current);
+      setCurrentPage(current);
+    },
+  };
   return (
     <>
       {mode ? (
@@ -258,98 +275,175 @@ export default function Slider({ data, linkHandler, isClosed, theme, mode }) {
                   </>
                 ) : (
                   <>
-                    <div
-                      className={
-                        theme === "etyne" ||
-                        theme === "dahwoo" ||
-                        theme === "phiverse"
-                          ? "slider overflow-hidden d-flex flex-direction-column"
-                          : "slider overflow-hidden"
-                      }
-                    >
-                      <div className={isClosed ? "order-2" : ""}>
-                        <ImgSlider
-                          settings={settings}
-                          sliderImg={data}
-                          className="round-0"
-                        />
-                      </div>
-                      {title && title.trim() ? (
-                        <div
-                          className={
-                            isClosed
-                              ? "swiper-content round-0 order-1"
-                              : "swiper-content round-0"
-                          }
-                        >
-                          <h4 id="slider__title">
-                            <TextLoader
-                              text={title}
-                              id="slider__title"
-                              characterNumber="50"
-                              btnClass="slider__btn"
-                            />
-                          </h4>
-                        </div>
-                      ) : (
-                        ""
-                      )}
-                      {subTitle && subTitle.trim() ? (
-                        <div
-                          className={
-                            isClosed
-                              ? `${
+                    {theme === "bonton" ? (
+                      <>
+                        <div className="slider overflow-hidden">
+                          <ImgSlider
+                            settings={settingsBonton}
+                            sliderImg={data}
+                            className="round-0"
+                            sliderRef={sliderRef}
+                          />
+                          <div className="">
+                            {title && title.trim() ? (
+                              <div className="swiper-content">
+                                <h4 id="slider__title">
+                                  <TextLoader
+                                    text={title}
+                                    id="slider__title"
+                                    characterNumber="50"
+                                    btnClass="slider__btn"
+                                  />
+                                </h4>
+                              </div>
+                            ) : (
+                              ""
+                            )}
+                            {subTitle && subTitle.trim() ? (
+                              <div
+                                className={`${
                                   sliderUrl && sliderUrl.trim() ? "round-0" : ""
-                                } swiper-content order-3`
-                              : `${
-                                  sliderUrl && sliderUrl.trim() ? "round-0" : ""
-                                } swiper-content`
-                          }
-                        >
-                          <pre
-                            className={isClosed ? "slider_bottom-para" : ""}
-                            id="slider__para"
+                                } swiper-content`}
+                              >
+                                <pre className="" id="slider__para">
+                                  <TextLoader
+                                    text={subTitle}
+                                    id="slider__para"
+                                    characterNumber="104"
+                                    btnClass="slider__btn"
+                                  />
+                                </pre>
+                              </div>
+                            ) : (
+                              ""
+                            )}
+                          </div>
+                          <button
+                            className="sliderBtn"
+                            onClick={() => {
+                              sliderRef.current.slickNext();
+                            }}
                           >
-                            <TextLoader
-                              text={subTitle}
-                              id="slider__para"
-                              characterNumber="104"
-                              btnClass="slider__btn"
-                            />
-                          </pre>
+                            <FontAwesomeIcon icon={faArrowRight} />
+                          </button>
+
+                          <div
+                            style={{
+                              color: "#fff",
+                              position: "absolute",
+                              top: "24px",
+                              left: "24px",
+                              fontSize: "2rem",
+                            }}
+                          >
+                            <FontAwesomeIcon icon={faLink} />
+                          </div>
                         </div>
-                      ) : (
-                        ""
-                      )}
-                      {sliderUrl && sliderUrl.trim() ? (
+                      </>
+                    ) : (
+                      <>
                         <div
                           className={
-                            mode === "shencho" || mode === "consmy"
-                              ? "download pb-4 order-3"
-                              : "download pb-4 order-4"
+                            theme === "etyne" ||
+                            theme === "dahwoo" ||
+                            theme === "phiverse"
+                              ? "slider overflow-hidden d-flex flex-direction-column"
+                              : "slider overflow-hidden"
                           }
                         >
-                          <a
-                            href={sliderUrl}
-                            target="_black"
-                            className="download_btn"
-                          >
-                            learn more
-                          </a>
+                          <div className={isClosed ? "order-2" : ""}>
+                            <ImgSlider
+                              settings={settings}
+                              sliderImg={data}
+                              className="round-0"
+                            />
+                          </div>
+                          {title && title.trim() ? (
+                            <div
+                              className={
+                                isClosed
+                                  ? "swiper-content round-0 order-1"
+                                  : "swiper-content round-0"
+                              }
+                            >
+                              <h4 id="slider__title">
+                                <TextLoader
+                                  text={title}
+                                  id="slider__title"
+                                  characterNumber="50"
+                                  btnClass="slider__btn"
+                                />
+                              </h4>
+                            </div>
+                          ) : (
+                            ""
+                          )}
+                          {subTitle && subTitle.trim() ? (
+                            <div
+                              className={
+                                isClosed
+                                  ? `${
+                                      sliderUrl && sliderUrl.trim()
+                                        ? "round-0"
+                                        : ""
+                                    } swiper-content order-3`
+                                  : `${
+                                      sliderUrl && sliderUrl.trim()
+                                        ? "round-0"
+                                        : ""
+                                    } swiper-content`
+                              }
+                            >
+                              <pre
+                                className={isClosed ? "slider_bottom-para" : ""}
+                                id="slider__para"
+                              >
+                                <TextLoader
+                                  text={subTitle}
+                                  id="slider__para"
+                                  characterNumber="104"
+                                  btnClass="slider__btn"
+                                />
+                              </pre>
+                            </div>
+                          ) : (
+                            ""
+                          )}
+                          {sliderUrl && sliderUrl.trim() ? (
+                            <div
+                              className={
+                                mode === "shencho" || mode === "consmy"
+                                  ? "download pb-4 order-3"
+                                  : "download pb-4 order-4"
+                              }
+                            >
+                              <a
+                                href={sliderUrl}
+                                target="_black"
+                                className="download_btn"
+                              >
+                                learn more
+                              </a>
+                            </div>
+                          ) : (
+                            ""
+                          )}
                         </div>
-                      ) : (
-                        ""
-                      )}
-                    </div>
-                    <div
-                      className={
-                        theme === "shencho" || theme === "consmy"
-                          ? "order-4"
-                          : "order-3"
-                      }
-                    >
-                      {!isClosed ? <CloseBtn linkHandler={linkHandler} /> : ""}
-                    </div>
+                        <div
+                          className={
+                            theme === "shencho" || theme === "consmy"
+                              ? "order-4"
+                              : "order-3"
+                          }
+                        >
+                          {!isClosed ? (
+                            <CloseBtn linkHandler={linkHandler} />
+                          ) : (
+                            ""
+                          )}
+                        </div>
+                      </>
+                    )}
                   </>
                 )}
               </div>

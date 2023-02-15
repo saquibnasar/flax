@@ -10,6 +10,8 @@ import NeumorphicContainer from "./NeumorphicContainer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { RWebShare } from "react-web-share";
+import Bonton from "./Theme/bonton/Bonton";
+import ReactSoundCloud from "react-soundcloud-embedded";
 export default function Home() {
   const { linkType, userId } = useParams();
   const [data, setData] = useState();
@@ -92,16 +94,28 @@ export default function Home() {
   let hero;
   let spanText;
   let headingText;
-
+  let soundcloud;
+  const defaultTheme = "dfs";
   if (!(data === undefined)) {
     hero = JSON.parse(data.CoverImageLocation);
-
+    soundcloud = JSON.parse(modeData.StandardLinks.Links).filter(
+      (value) => value.Name === "Soundcloud"
+    );
     window.addEventListener("scroll", () => {
       const TopBar = document.querySelector(".TopBar");
-      if (window.scrollY > 266) {
-        TopBar.classList.remove("d-none");
+      const topBarBonton = document.querySelector(".topBarBonton");
+      if (defaultTheme === "bonton") {
+        if (window.scrollY > 132) {
+          topBarBonton.classList.remove("d-none");
+        } else {
+          topBarBonton.classList.add("d-none");
+        }
       } else {
-        TopBar.classList.add("d-none");
+        if (window.scrollY > 266) {
+          TopBar.classList.remove("d-none");
+        } else {
+          TopBar.classList.add("d-none");
+        }
       }
     });
 
@@ -115,6 +129,7 @@ export default function Home() {
     }
   }
 
+  // theme-${theme}
   return (
     <>
       <div className={`main-container theme-${theme}`}>
@@ -164,9 +179,15 @@ export default function Home() {
                         <h1>
                           {headingText} <span>{spanText ? spanText : ""} </span>
                         </h1>
-                        <a className="share">
-                          <FontAwesomeIcon icon={faArrowUpFromBracket} />
-                        </a>
+                        <RWebShare
+                          data={{
+                            url: window.location.href,
+                          }}
+                        >
+                          <button className="share cursor_pointer">
+                            <FontAwesomeIcon icon={faArrowUpFromBracket} />
+                          </button>
+                        </RWebShare>
                       </div>
                       <CardSection
                         modeData={modeData}
@@ -206,9 +227,15 @@ export default function Home() {
                       <h1>
                         {headingText} <span>{spanText ? spanText : ""} </span>
                       </h1>
-                      <a className="share">
-                        <FontAwesomeIcon icon={faArrowUpFromBracket} />
-                      </a>
+                      <RWebShare
+                        data={{
+                          url: window.location.href,
+                        }}
+                      >
+                        <button className="share cursor_pointer">
+                          <FontAwesomeIcon icon={faArrowUpFromBracket} />
+                        </button>
+                      </RWebShare>
                     </div>
                     <CardSection
                       modeData={modeData}
@@ -227,25 +254,169 @@ export default function Home() {
                 timeout={1000}
                 classNames="fade"
               >
-                <>
-                  {theme === "riorpad" || theme === "buwayne" ? (
-                    <NeumorphicContainer
-                      containerclassName="neumorphic-container"
-                      subcontainerclasses="sub-container round-25 p-2"
-                      isLayer={true}
-                    >
-                      <div className="primary_container round-25 p-relative">
-                        {/* <CSSTransition
-                          in={true}
-                          appear={true}
-                          timeout={1000}
-                          classNames={modeData === undefined ? "" : "slide"}
-                        >
-                          <Loader mode="home" />
-                        </CSSTransition> */}
+                {defaultTheme === "bonton" ? (
+                  <section className="hero bonton">
+                    <Bonton
+                      heroData={hero}
+                      data={data}
+                      headingText={headingText}
+                      spanText={spanText}
+                      theme={defaultTheme}
+                      modeData={modeData}
+                      mode={mode}
+                      soundcloud={soundcloud}
+                    />
+                  </section>
+                ) : (
+                  <>
+                    {theme === "riorpad" || theme === "buwayne" ? (
+                      <NeumorphicContainer
+                        containerclassName="neumorphic-container"
+                        subcontainerclasses="sub-container round-25 p-2"
+                        isLayer={true}
+                      >
+                        <div className="primary_container round-25 p-relative">
+                          <section className="hero">
+                            {hero.length ? (
+                              <div className="slider border-none">
+                                <ImgSlider
+                                  settings={settings}
+                                  sliderImg={hero}
+                                  className="round-0"
+                                  border="slick-list-border-0"
+                                />
+                              </div>
+                            ) : (
+                              ""
+                            )}
+                            {data.ImageLocation ? (
+                              <div
+                                className={
+                                  hero.length ? "logo" : "logo-only text-center"
+                                }
+                              >
+                                <NeumorphicContainer
+                                  containerclassName="rounded-circle p-1px"
+                                  subcontainerclasses="rounded-circle p-1 d-flex"
+                                  isLayer={false}
+                                >
+                                  <img
+                                    className="img-fluid"
+                                    src={data.ImageLocation}
+                                    alt=""
+                                  />
+                                </NeumorphicContainer>
+                              </div>
+                            ) : (
+                              ""
+                            )}
+
+                            <div
+                              className={
+                                data.ImageLocation && !hero.length
+                                  ? "container text-center"
+                                  : "container"
+                              }
+                            >
+                              <div
+                                className={
+                                  hero.length && data.ImageLocation
+                                    ? "mt-5"
+                                    : "mt-3"
+                                }
+                              >
+                                <h1>
+                                  {headingText}{" "}
+                                  <span>{spanText ? spanText : ""} </span>
+                                </h1>
+                                <h2>{data.Work}</h2>
+                                <h3>
+                                  {data.Location}
+                                  {data.Country ? `, ${data.Country}` : ""}
+                                </h3>
+                                {data.Bio.trim() ? (
+                                  <NeumorphicContainer
+                                    containerclassName="round-25 mt-3"
+                                    subcontainerclasses="border-none mt-0 round-25 w-100"
+                                  >
+                                    <div className="hero-detail">
+                                      <pre id="hero__para">
+                                        <TextLoader
+                                          text={data.Bio}
+                                          id="hero__para"
+                                          characterNumber="200"
+                                          btnClass="hero__btn"
+                                        />
+                                      </pre>
+                                    </div>
+                                  </NeumorphicContainer>
+                                ) : (
+                                  ""
+                                )}
+                              </div>
+                            </div>
+                          </section>
+                          <div className="TopBar d-none">
+                            {data.ImageLocation ? (
+                              <div
+                                className={
+                                  hero.length ? "logo" : "logo-only text-center"
+                                }
+                              >
+                                <img
+                                  className="img-fluid"
+                                  src={data.ImageLocation}
+                                  alt=""
+                                />
+                              </div>
+                            ) : (
+                              ""
+                            )}
+
+                            <h1>
+                              {headingText}{" "}
+                              <span>{spanText ? spanText : ""} </span>
+                            </h1>
+                            <RWebShare
+                              data={{
+                                url: window.location.href,
+                              }}
+                            >
+                              <button className="share cursor_pointer">
+                                <FontAwesomeIcon icon={faArrowUpFromBracket} />
+                              </button>
+                            </RWebShare>
+                          </div>
+                          <CardSection modeData={modeData} theme={theme} />
+                          <div className="container">
+                            <NeumorphicContainer
+                              containerclassName="round-25 mt-4"
+                              subcontainerclasses="border-none mt-0 p-2 round-25 w-100 justify-content-center"
+                            >
+                              {soundcloud[0] ? (
+                                <div className="soundcloud">
+                                  <ReactSoundCloud
+                                    height="300px"
+                                    url={soundcloud[0].URL}
+                                  />
+                                </div>
+                              ) : (
+                                ""
+                              )}
+                            </NeumorphicContainer>
+                          </div>
+                          <Footer
+                            theme={theme}
+                            mode={theme}
+                            userName={data.Name}
+                          />
+                        </div>
+                      </NeumorphicContainer>
+                    ) : (
+                      <div className="primary_container p-relative">
                         <section className="hero">
                           {hero.length ? (
-                            <div className="slider border-none">
+                            <div className="slider border-none round-0 box-shadow-none">
                               <ImgSlider
                                 settings={settings}
                                 sliderImg={hero}
@@ -262,17 +433,11 @@ export default function Home() {
                                 hero.length ? "logo" : "logo-only text-center"
                               }
                             >
-                              <NeumorphicContainer
-                                containerclassName="rounded-circle p-1px"
-                                subcontainerclasses="rounded-circle p-1 d-flex"
-                                isLayer={false}
-                              >
-                                <img
-                                  className="img-fluid"
-                                  src={data.ImageLocation}
-                                  alt=""
-                                />
-                              </NeumorphicContainer>
+                              <img
+                                className="img-fluid"
+                                src={data.ImageLocation}
+                                alt=""
+                              />
                             </div>
                           ) : (
                             ""
@@ -288,7 +453,7 @@ export default function Home() {
                             <div
                               className={
                                 hero.length && data.ImageLocation
-                                  ? "mt-5"
+                                  ? "mt-2rem"
                                   : "mt-3"
                               }
                             >
@@ -301,22 +466,24 @@ export default function Home() {
                                 {data.Location}
                                 {data.Country ? `, ${data.Country}` : ""}
                               </h3>
+
                               {data.Bio.trim() ? (
-                                <NeumorphicContainer
-                                  containerclassName="round-25 mt-3"
-                                  subcontainerclasses="border-none mt-0 round-25 w-100"
+                                <div
+                                  className={
+                                    theme === "etyne" || theme === "dahwoo"
+                                      ? "d-none"
+                                      : "hero-detail"
+                                  }
                                 >
-                                  <div className="hero-detail">
-                                    <pre id="hero__para">
-                                      <TextLoader
-                                        text={data.Bio}
-                                        id="hero__para"
-                                        characterNumber="200"
-                                        btnClass="hero__btn"
-                                      />
-                                    </pre>
-                                  </div>
-                                </NeumorphicContainer>
+                                  <pre id="hero__para">
+                                    <TextLoader
+                                      text={data.Bio}
+                                      id="hero__para"
+                                      characterNumber="200"
+                                      btnClass="hero__btn"
+                                    />
+                                  </pre>
+                                </div>
                               ) : (
                                 ""
                               )}
@@ -344,148 +511,44 @@ export default function Home() {
                             {headingText}{" "}
                             <span>{spanText ? spanText : ""} </span>
                           </h1>
-                          <a className="share">
-                            <FontAwesomeIcon icon={faArrowUpFromBracket} />
-                          </a>
+                          <RWebShare
+                            data={{
+                              url: window.location.href,
+                            }}
+                          >
+                            <button className="share cursor_pointer">
+                              <FontAwesomeIcon icon={faArrowUpFromBracket} />
+                            </button>
+                          </RWebShare>
                         </div>
-                        <CardSection modeData={modeData} theme={theme} />
-                        <Footer
-                          theme={theme}
-                          mode={theme}
-                          userName={data.Name}
-                        />
-                      </div>
-                    </NeumorphicContainer>
-                  ) : (
-                    <div className="primary_container p-relative">
-                      {/* <CSSTransition
-                        in={true}
-                        appear={true}
-                        timeout={1000}
-                        classNames={modeData === undefined ? "" : "slide"}
-                      >
-                        <Loader mode="home" />
-                      </CSSTransition> */}
-                      <section className="hero">
-                        {hero.length ? (
-                          <div className="slider border-none round-0 box-shadow-none">
-                            <ImgSlider
-                              settings={settings}
-                              sliderImg={hero}
-                              className="round-0"
-                              border="slick-list-border-0"
-                            />
-                          </div>
-                        ) : (
-                          ""
-                        )}
-                        {data.ImageLocation ? (
-                          <div
-                            className={
-                              hero.length ? "logo" : "logo-only text-center"
-                            }
-                          >
-                            <img
-                              className="img-fluid"
-                              src={data.ImageLocation}
-                              alt=""
-                            />
-                          </div>
-                        ) : (
-                          ""
-                        )}
 
-                        <div
-                          className={
-                            data.ImageLocation && !hero.length
-                              ? "container text-center"
-                              : "container"
-                          }
-                        >
-                          <div
-                            className={
-                              hero.length && data.ImageLocation
-                                ? "mt-2rem"
-                                : "mt-3"
-                            }
-                          >
-                            <h1>
-                              {headingText}{" "}
-                              <span>{spanText ? spanText : ""} </span>
-                            </h1>
-                            <h2>{data.Work}</h2>
-                            <h3>
-                              {data.Location}
-                              {data.Country ? `, ${data.Country}` : ""}
-                            </h3>
-
-                            {data.Bio.trim() ? (
-                              <div
-                                className={
-                                  theme === "etyne" || theme === "dahwoo"
-                                    ? "d-none"
-                                    : "hero-detail"
-                                }
-                              >
-                                <pre id="hero__para">
-                                  <TextLoader
-                                    text={data.Bio}
-                                    id="hero__para"
-                                    characterNumber="200"
-                                    btnClass="hero__btn"
-                                  />
-                                </pre>
-                              </div>
-                            ) : (
-                              ""
-                            )}
-                          </div>
+                        {theme === "etyne" || theme === "dahwoo" ? (
+                          <CardSection
+                            modeData={modeData}
+                            theme={theme}
+                            heroData={data.Bio}
+                          />
+                        ) : (
+                          <CardSection modeData={modeData} theme={theme} />
+                        )}
+                        <div className="container">
+                          {soundcloud[0] ? (
+                            <div className="mt-4 soundcloud">
+                              <ReactSoundCloud
+                                height="300px"
+                                url={soundcloud[0].URL}
+                              />
+                            </div>
+                          ) : (
+                            ""
+                          )}
                         </div>
-                      </section>
-                      <div className="TopBar d-none">
-                        {data.ImageLocation ? (
-                          <div
-                            className={
-                              hero.length ? "logo" : "logo-only text-center"
-                            }
-                          >
-                            <img
-                              className="img-fluid"
-                              src={data.ImageLocation}
-                              alt=""
-                            />
-                          </div>
-                        ) : (
-                          ""
-                        )}
 
-                        <h1>
-                          {headingText} <span>{spanText ? spanText : ""} </span>
-                        </h1>
-                        <RWebShare
-                          data={{
-                            url: window.location.href,
-                          }}
-                        >
-                          <button className="share cursor_pointer">
-                            <FontAwesomeIcon icon={faArrowUpFromBracket} />
-                          </button>
-                        </RWebShare>
+                        <Footer mode={mode} userName={data.Name} />
                       </div>
-                      {theme === "etyne" || theme === "dahwoo" ? (
-                        <CardSection
-                          modeData={modeData}
-                          theme={theme}
-                          heroData={data.Bio}
-                        />
-                      ) : (
-                        <CardSection modeData={modeData} theme={theme} />
-                      )}
-
-                      <Footer mode={mode} userName={data.Name} />
-                    </div>
-                  )}
-                </>
+                    )}
+                  </>
+                )}
               </CSSTransition>
             )}
           </>
