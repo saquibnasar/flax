@@ -252,7 +252,7 @@
     }
   }
 }
-.theme-bonton {
+.theme-essence {
   .card-section {
     .card {
       background: #323232;
@@ -277,6 +277,20 @@
         font-size: 28px;
         line-height: 32px;
         color: $white-color;
+        @include media474px {
+          font-size: 18px;
+        }
+        .extra-btn {
+          font-family: "Karla";
+          font-style: normal;
+          font-weight: 500;
+          font-size: 28px;
+          line-height: 32px;
+          color: $white-color;
+          @include media474px {
+            font-size: 18px;
+          }
+        }
       }
     }
   }

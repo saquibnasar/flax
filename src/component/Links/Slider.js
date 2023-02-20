@@ -43,7 +43,7 @@ export default function Slider({ data, linkHandler, isClosed, theme, mode }) {
     },
   };
   const sliderRef = useRef();
-  const settingsBonton = {
+  const settingsEssence = {
     dots: false,
     infinite: true,
     speed: 500,
@@ -275,11 +275,11 @@ export default function Slider({ data, linkHandler, isClosed, theme, mode }) {
                   </>
                 ) : (
                   <>
-                    {theme === "bonton" ? (
+                    {theme === "essence" ? (
                       <>
                         <div className="slider overflow-hidden">
                           <ImgSlider
-                            settings={settingsBonton}
+                            settings={settingsEssence}
                             sliderImg={data}
                             className="round-0"
                             sliderRef={sliderRef}

@@ -37,16 +37,19 @@ export default function Loader({ mode, className, theme }) {
                 </section>
               ) : (
                 <>
-                  {theme === "bonton" ? (
+                  {theme === "essence" ? (
                     <section
                       className="loading-section d-flex"
                       id="loader"
                       style={{
                         position: "absolute",
-                        left: "0px",
-                        top: "0",
+                        left: "50%",
+                        top: "75%",
+                        transform: "translateX(-50%)",
+                        borderRadius: "16px",
                         zIndex: 7,
-                        height: "500px",
+                        height: "300px",
+                        maxWidth: "26rem",
                       }}
                     >
                       <div className="loading"></div>

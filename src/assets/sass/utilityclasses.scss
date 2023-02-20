@@ -150,6 +150,18 @@
 .order-4 {
   order: 4 !important;
 }
+.order-5 {
+  order: 5 !important;
+}
+.order-6 {
+  order: 6 !important;
+}
+.order-7 {
+  order: 7 !important;
+}
+.order-8 {
+  order: 8 !important;
+}
 .w-0 {
   width: 0px;
 }
@@ -373,7 +385,7 @@
   }
 }
 
-.theme-bonton {
+.theme-essence {
   .TopBar {
     position: relative;
     z-index: 1000;
@@ -390,6 +402,9 @@
     justify-content: space-between;
     padding: 16px 20px;
     margin-bottom: 24px;
+    @include media769px {
+      width: 100%;
+    }
     // transition: 0.5s ease-in-out;
     transition: position 150ms ease;
     .share {

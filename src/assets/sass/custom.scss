@@ -57,11 +57,14 @@ body:has(.flax)::-webkit-scrollbar {
     margin: 0 20px;
   }
 }
-.main-container.theme-bonton {
+.main-container.theme-essence {
   background: #5c5c5c;
   max-width: 768px;
   .container {
     margin: 0 56px;
+    @include media574px {
+      margin: 0 20px;
+    }
   }
 }
 .main-container.theme-phiverse {
@@ -106,6 +109,11 @@ body:has(.flax)::-webkit-scrollbar {
 .neumorphic-container {
   @include media574px {
     border-radius: 0px !important;
+  }
+}
+.theme-essence {
+  .primary_container {
+    background: #5c5c5c;
   }
 }
 .theme-buwayne {

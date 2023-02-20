@@ -435,7 +435,7 @@
     }
   }
 }
-.theme-bonton {
+.theme-essence {
   .slider {
     .swiper {
       .swiper-slide {
@@ -449,8 +449,8 @@
         height: 100%;
         background: linear-gradient(
           0deg,
-          rgba(36, 31, 80, 0.2),
-          rgba(36, 31, 80, 0.2)
+          rgba(36, 31, 80, 0.1),
+          rgba(36, 31, 80, 0.1)
         );
         opacity: 0.1;
         display: block;
@@ -479,6 +479,10 @@
         line-height: 24px;
         color: #cfc8ff;
         cursor: all-scroll;
+        @include media474px {
+          width: 55%;
+          font-size: 18px;
+        }
         .extra-btn {
           font-family: "Poppins";
           font-style: normal;
@@ -498,9 +502,15 @@
         position: absolute;
         width: 43%;
         left: 16px;
-        bottom: 52px;
+        bottom: 43px;
         overflow-y: scroll;
         height: 60px;
+        cursor: all-scroll;
+        @include media474px {
+          width: 55%;
+          font-size: 14px;
+        }
+
         .extra-btn {
           font-family: "Quicksand";
           font-style: normal;
@@ -517,7 +527,7 @@
       }
     }
   }
-  .bontonSlider {
+  .essenceSlider {
     .slider {
       position: relative;
       border-radius: 16px;

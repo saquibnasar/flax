@@ -17,6 +17,7 @@ import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import TextLoader from "../TextLoader";
 export default function Card({ StandardLinks, CustomLinks, theme, heroData }) {
+  // social_media if needs
   return (
     <>
       <div className="cardItem">
@@ -24,7 +25,7 @@ export default function Card({ StandardLinks, CustomLinks, theme, heroData }) {
           className={
             theme === "dahwoo" || theme === "etyne"
               ? "social_media d-flex justify-content-center align-items-center mt-4 gap-2"
-              : "social_media"
+              : `${theme === "essence" ? "social_media" : ""}`
           }
         >
           {StandardLinks
@@ -50,6 +51,8 @@ export default function Card({ StandardLinks, CustomLinks, theme, heroData }) {
                   url = "Vimeo";
                 } else if (url === "Phone") {
                   link = `tel:${value.URL}`;
+                } else if (url === "Spotify") {
+                  link = value.URL.split("user/")[1];
                 } else if (url === "Whatsapp") {
                   link = `https://wa.me/${value.URL}`;
                 } else if (url === "Gmail") {
@@ -200,14 +203,14 @@ export default function Card({ StandardLinks, CustomLinks, theme, heroData }) {
                 if (
                   theme === "dahwoo" ||
                   theme === "etyne" ||
-                  theme === "bonton"
+                  theme === "essence"
                 ) {
                   return (
                     <a
                       key={id}
                       href={link}
                       className={
-                        theme === "dahwoo" ? "theme_dahwoo-card" : "bontonIcon"
+                        theme === "dahwoo" ? "theme_dahwoo-card" : "essenceIcon"
                       }
                       target="_blank"
                       rel="noopener noreferrer"

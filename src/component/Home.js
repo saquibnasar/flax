@@ -10,8 +10,9 @@ import NeumorphicContainer from "./NeumorphicContainer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { RWebShare } from "react-web-share";
-import Bonton from "./Theme/bonton/Bonton";
+import Essence from "./Theme/essence/Essence";
 import ReactSoundCloud from "react-soundcloud-embedded";
+import Spotify from "react-spotify-embed";
 export default function Home() {
   const { linkType, userId } = useParams();
   const [data, setData] = useState();
@@ -95,20 +96,26 @@ export default function Home() {
   let spanText;
   let headingText;
   let soundcloud;
-  const defaultTheme = "dfs";
+  let spotify;
+  const defaultTheme = "essence";
   if (!(data === undefined)) {
     hero = JSON.parse(data.CoverImageLocation);
     soundcloud = JSON.parse(modeData.StandardLinks.Links).filter(
       (value) => value.Name === "Soundcloud"
     );
+
+    spotify = JSON.parse(modeData.StandardLinks.Links).filter(
+      (value) => value.Name === "Spotify"
+    );
+
     window.addEventListener("scroll", () => {
       const TopBar = document.querySelector(".TopBar");
-      const topBarBonton = document.querySelector(".topBarBonton");
-      if (defaultTheme === "bonton") {
+      const topBarEssence = document.querySelector(".topBarEssence");
+      if (defaultTheme === "essence") {
         if (window.scrollY > 132) {
-          topBarBonton.classList.remove("d-none");
+          topBarEssence.classList.remove("d-none");
         } else {
-          topBarBonton.classList.add("d-none");
+          topBarEssence.classList.add("d-none");
         }
       } else {
         if (window.scrollY > 266) {
@@ -132,7 +139,7 @@ export default function Home() {
   // theme-${theme}
   return (
     <>
-      <div className={`main-container theme-${theme}`}>
+      <div className={`main-container theme-essence`}>
         {modeData === undefined ? (
           <Loader />
         ) : (
@@ -254,18 +261,21 @@ export default function Home() {
                 timeout={1000}
                 classNames="fade"
               >
-                {defaultTheme === "bonton" ? (
-                  <section className="hero bonton">
-                    <Bonton
-                      heroData={hero}
-                      data={data}
-                      headingText={headingText}
-                      spanText={spanText}
-                      theme={defaultTheme}
-                      modeData={modeData}
-                      mode={mode}
-                      soundcloud={soundcloud}
-                    />
+                {defaultTheme === "essence" ? (
+                  <section className="essence primary_container">
+                    <div className="hero">
+                      <Essence
+                        heroData={hero}
+                        data={data}
+                        headingText={headingText}
+                        spanText={spanText}
+                        theme={defaultTheme}
+                        modeData={modeData}
+                        mode={mode}
+                        soundcloud={soundcloud}
+                        spotify={spotify}
+                      />
+                    </div>
                   </section>
                 ) : (
                   <>
@@ -405,6 +415,24 @@ export default function Home() {
                               )}
                             </NeumorphicContainer>
                           </div>
+                          <div className="container">
+                            <NeumorphicContainer
+                              containerclassName="round-25 mt-4"
+                              subcontainerclasses="border-none mt-0 p-2 round-25 w-100 justify-content-center"
+                            >
+                              {spotify[0] && spotify[0].isActive ? (
+                                <Spotify
+                                  width="100%"
+                                  height="152px"
+                                  wide
+                                  link={spotify[0].URL.split("user/")[1]}
+                                />
+                              ) : (
+                                ""
+                              )}
+                            </NeumorphicContainer>
+                          </div>
+
                           <Footer
                             theme={theme}
                             mode={theme}
@@ -535,7 +563,8 @@ export default function Home() {
                           {soundcloud[0] ? (
                             <div className="mt-4 soundcloud">
                               <ReactSoundCloud
-                                height="300px"
+                                height="250px"
+                                wide
                                 url={soundcloud[0].URL}
                               />
                             </div>
@@ -543,6 +572,18 @@ export default function Home() {
                             ""
                           )}
                         </div>
+                        {spotify[0] && spotify[0].isActive ? (
+                          <div className="container mt-4 order-5">
+                            <Spotify
+                              width="100%"
+                              height="152px"
+                              wide
+                              link={spotify[0].URL.split("user/")[1]}
+                            />
+                          </div>
+                        ) : (
+                          ""
+                        )}
 
                         <Footer mode={mode} userName={data.Name} />
                       </div>
