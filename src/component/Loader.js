@@ -44,7 +44,7 @@ export default function Loader({ mode, className, theme }) {
                       style={{
                         position: "absolute",
                         left: "50%",
-                        top: "75%",
+                        top: "73%",
                         transform: "translateX(-50%)",
                         borderRadius: "16px",
                         zIndex: 7,

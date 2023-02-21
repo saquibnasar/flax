@@ -35,7 +35,9 @@ body:has(.flax)::-webkit-scrollbar {
 #root:has(.theme-consmy) {
   background: #252525;
 }
-
+#root:has(.theme-essence) {
+  background: #5c5c5c;
+}
 .main-container {
   max-width: 25rem;
   width: 100%;
@@ -60,6 +62,8 @@ body:has(.flax)::-webkit-scrollbar {
 .main-container.theme-essence {
   background: #5c5c5c;
   max-width: 768px;
+  display: flex;
+  justify-content: center;
   .container {
     margin: 0 56px;
     @include media574px {

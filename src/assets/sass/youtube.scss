@@ -196,13 +196,19 @@
       border-radius: 0px 0px 6px 6px;
       padding-left: 16px;
       p {
-        width: 400px;
+        width: 60%;
         font-family: "Poppins";
         font-style: normal;
         font-weight: 600;
         font-size: 24px;
         line-height: 36px;
         cursor: all-scroll;
+        @include media574px {
+          width: 65%;
+        }
+        @include media474px {
+          width: 67%;
+        }
         .extra-btn {
           font-family: "Poppins";
           font-style: normal;

@@ -207,14 +207,7 @@ export default function Essence(props) {
         props.modeData.Document.URL.trim() &&
         props.modeData.Document.isActive ? (
           <div className="container order-7 card-section mt-4">
-            <div
-              className="essence-document_background"
-              style={{
-                background: "#323232",
-                padding: "24px 32px",
-                borderRadius: "16px",
-              }}
-            >
+            <div className="essence-document_background">
               <Documents data={props.modeData.Document} theme={props.theme} />
             </div>
           </div>

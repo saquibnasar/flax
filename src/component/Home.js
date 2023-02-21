@@ -97,7 +97,7 @@ export default function Home() {
   let headingText;
   let soundcloud;
   let spotify;
-  const defaultTheme = "essence";
+
   if (!(data === undefined)) {
     hero = JSON.parse(data.CoverImageLocation);
     soundcloud = JSON.parse(modeData.StandardLinks.Links).filter(
@@ -136,10 +136,9 @@ export default function Home() {
     }
   }
 
-  // theme-${theme}
   return (
     <>
-      <div className={`main-container theme-essence`}>
+      <div className={`main-container theme-${theme}`}>
         {modeData === undefined ? (
           <Loader />
         ) : (
@@ -261,7 +260,7 @@ export default function Home() {
                 timeout={1000}
                 classNames="fade"
               >
-                {defaultTheme === "essence" ? (
+                {theme === "essence" ? (
                   <section className="essence primary_container">
                     <div className="hero">
                       <Essence
@@ -269,7 +268,7 @@ export default function Home() {
                         data={data}
                         headingText={headingText}
                         spanText={spanText}
-                        theme={defaultTheme}
+                        theme={theme}
                         modeData={modeData}
                         mode={mode}
                         soundcloud={soundcloud}
