@@ -72,13 +72,18 @@
     }
   }
   .theme_dahwoo-card {
+    background: #000000;
+    border-radius: 20px;
     border-radius: 20px;
     width: 40px;
     height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
-
+    svg {
+      color: #fff;
+      font-size: 1.5rem;
+    }
     // img {
     //   width: 24px;
     //   height: 24px;
@@ -218,6 +223,11 @@
         align-items: center;
         width: 50px;
         height: 50px;
+        svg {
+          font-size: 1.5rem;
+          color: #fcfdff;
+          box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.1);
+        }
         .icon {
           justify-content: center;
           align-items: center;
@@ -244,41 +254,68 @@
   }
 }
 .theme-buwayne {
-  .card {
-    .svgIcon {
-      svg {
-        color: #60656b;
+  .card-section {
+    .card {
+      .card_icon {
+        svg {
+          color: #60656b;
+          box-shadow: -4px -4px 12px rgba(236, 236, 236, 0.05),
+            4px 4px 12px rgba(0, 0, 0, 0.1);
+        }
+      }
+      .svgIcon {
+        svg {
+          color: #60656b;
+        }
       }
     }
   }
 }
-.theme-essence {
+.theme-neotronic {
   .card-section {
+    .customCard_dahwoo {
+      img {
+        height: 280px;
+        @include media574px {
+          height: 100%;
+        }
+      }
+    }
     .card {
       background: #323232;
       box-shadow: 1px 1px 10px #999999;
       border-radius: 5px;
-      padding: 32px 20px;
-
+      padding: 20px 20px;
+      @include media400 {
+        padding: 15px 20px;
+      }
       .card_icon {
         filter: drop-shadow(1px 1px 10px #999999);
         border-radius: 5px;
-        width: 55px;
-        height: 55px;
+        width: 45px;
+        height: 45px;
         background: transparent;
+        @include media400 {
+          width: 40px;
+          height: 40px;
+        }
         img {
-          width: 55px;
+          width: 45px;
+          @include media400 {
+            width: 40px;
+          }
+          transform: scale(1);
         }
       }
       p {
         font-family: "Karla";
         font-style: normal;
         font-weight: 500;
-        font-size: 28px;
+        font-size: 18px;
         line-height: 32px;
         color: $white-color;
         @include media474px {
-          font-size: 18px;
+          font-size: 14px;
         }
         .extra-btn {
           font-family: "Karla";

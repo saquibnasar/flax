@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^6.2.1",
+    "@fortawesome/free-regular-svg-icons": "^6.3.0",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@react-pdf-viewer/core": "^3.8.0",
@@ -22,6 +23,7 @@
     "react-router-dom": "^6.4.2",
     "react-scripts": "5.0.1",
     "react-slick": "^0.29.0",
+    "react-social-media-embed": "^2.3.4",
     "react-soundcloud-embedded": "^2.0.7",
     "react-spotify-embed": "^1.0.4",
     "react-transition-group": "^4.4.5",

@@ -5,7 +5,7 @@
   position: relative;
   .logo {
     position: absolute;
-    top: 6.4rem;
+    top: 65%;
     left: 15px;
     border-radius: 50%;
 
@@ -15,6 +15,10 @@
       background: $white-color;
       width: 85px;
       height: 85px;
+      @include media440 {
+        width: 75px;
+        height: 75px;
+      }
     }
   }
   .logo-only {
@@ -90,10 +94,18 @@
 .theme-riorpad,
 .theme-buwayne {
   .hero {
+    .logo-only {
+      border-radius: 50%;
+      margin: 8px auto auto;
+      img {
+        transform: scale(1);
+      }
+    }
     .hero-detail {
       border: none;
       margin-top: 0px;
       background: transparent;
+
       pre {
         font-family: "Open Sans";
         font-weight: 400;
@@ -113,7 +125,7 @@
     }
   }
 }
-.theme-essence {
+.theme-neotronic {
   .hero {
     .hero-detail {
       background: #323232;
@@ -126,21 +138,21 @@
         font-family: "Karla";
         font-style: normal;
         font-weight: 500;
-        font-size: 24px;
+        font-size: 18px;
         line-height: 24px;
         color: $white-color;
         @include media474px {
-          font-size: 18px;
+          font-size: 14px;
         }
         .extra-btn {
           font-family: "Karla";
           font-style: normal;
           font-weight: 500;
-          font-size: 24px;
+          font-size: 18px;
           line-height: 24px;
           color: $white-color;
           @include media474px {
-            font-size: 18px;
+            font-size: 14px;
           }
         }
       }

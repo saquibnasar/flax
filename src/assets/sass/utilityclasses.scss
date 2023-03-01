@@ -212,6 +212,11 @@
 .m-auto {
   margin: auto;
 }
+@include media574px {
+  .mt-sm-4 {
+    margin-top: 1.5rem;
+  }
+}
 .mt-5 {
   margin-top: 3rem !important;
 }
@@ -252,11 +257,17 @@
 .pb-3 {
   padding-bottom: 1rem;
 }
+
 .cardPadding {
   padding-left: 55px !important;
   padding-right: 24px !important;
 }
-
+.theme-neotronic {
+  .cardPadding {
+    padding-left: 67px !important;
+    padding-right: 24px !important;
+  }
+}
 // box shadow
 .box-shadow-none {
   box-shadow: none !important;
@@ -385,7 +396,7 @@
   }
 }
 
-.theme-essence {
+.theme-neotronic {
   .TopBar {
     position: relative;
     z-index: 1000;
@@ -401,11 +412,11 @@
     align-items: center;
     justify-content: space-between;
     padding: 16px 20px;
-    margin-bottom: 24px;
+
     @include media769px {
       width: 100%;
     }
-    // transition: 0.5s ease-in-out;
+
     transition: position 150ms ease;
     .share {
       border: 1px solid #323232;
@@ -416,7 +427,7 @@
       gap: 14px;
       justify-content: center;
       align-items: center;
-      color: #323232;
+      color: #e3e3e3;
       width: unset;
       height: unset;
       background: transparent;
@@ -426,7 +437,7 @@
         font-weight: 400;
         font-size: 16px;
         line-height: 18px;
-        color: #323232;
+        color: #e3e3e3;
       }
     }
   }
@@ -438,3 +449,47 @@
   left: 50%;
   transform: translateX(-50%);
 }
+.neotronicLink {
+  color: #fff;
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  font-size: 2rem;
+  .neotronicLink_text {
+    color: #4d4d4d;
+    background: #fff;
+    padding: 10px;
+    position: absolute;
+    top: 32%;
+    height: 55px;
+    width: 80px;
+    transform: translateY(-50%);
+    left: 57px;
+    border-radius: 4px;
+    opacity: 0;
+    transition: 0.5s ease-in-out;
+    font-size: 14px;
+  }
+  .neotronicLink_text::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    bottom: 32%;
+    z-index: -1;
+    left: -9px;
+    transform: rotate(45deg);
+  }
+}
+.neotronicLink:hover {
+  .neotronicLink_text {
+    opacity: 1;
+  }
+}
+// .essenceLink::after {
+//   content: "sfdk";
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+// }

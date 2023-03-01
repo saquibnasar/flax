@@ -435,14 +435,15 @@
     }
   }
 }
-.theme-essence {
+.theme-neotronic {
   .slider {
     .swiper {
-      .swiper-slide {
-        img {
-          height: 300px;
-        }
-      }
+      border: none;
+      // .swiper-slide {
+      //   img {
+      //     height: 300px;
+      //   }
+      // }
       .swiper-slide::after {
         content: "";
         width: 100%;
@@ -465,23 +466,33 @@
       border-radius: 0px;
       padding: 0px;
       background: transparent;
-      h4 {
+      h4,
+      pre {
         position: absolute;
-        width: 43%;
+        width: 75%;
         left: 16px;
-        bottom: 108px;
-        height: 52px;
-        overflow-y: scroll;
+        bottom: 24px;
+        background: #ffffff;
+        border-radius: 6px;
+        padding: 16px;
+        transition: 0.5s ease-in-out;
+        @include media500 {
+          width: 68%;
+        }
+        @include media400 {
+          width: 60%;
+        }
+      }
+      h4 {
         font-family: "Poppins";
         font-style: normal;
         font-weight: 600;
-        font-size: 20px;
+        font-size: 18px;
         line-height: 24px;
-        color: #cfc8ff;
-        cursor: all-scroll;
+        color: #817e97;
+        transition: 0.5s ease-in-out;
         @include media474px {
-          width: 55%;
-          font-size: 18px;
+          font-size: 16px;
         }
         .extra-btn {
           font-family: "Poppins";
@@ -489,7 +500,10 @@
           font-weight: 600;
           font-size: 20px;
           line-height: 24px;
-          color: $white-color;
+          color: #817e97;
+          @include media474px {
+            font-size: 16px;
+          }
         }
       }
       pre {
@@ -498,46 +512,61 @@
         font-weight: 500;
         font-size: 16px;
         line-height: 20px;
-        color: #bdb5ea;
-        position: absolute;
-        width: 43%;
-        left: 16px;
-        bottom: 43px;
-        overflow-y: scroll;
-        height: 60px;
-        cursor: all-scroll;
+        color: #645f81;
+        white-space: initial;
         @include media474px {
-          width: 55%;
           font-size: 14px;
         }
-
         .extra-btn {
           font-family: "Quicksand";
           font-style: normal;
           font-weight: 500;
           font-size: 16px;
           line-height: 20px;
-          color: $white-color;
+          color: #645f81;
+          @include media474px {
+            font-size: 14px;
+          }
         }
       }
-
-      h4::-webkit-scrollbar,
-      pre::-webkit-scrollbar {
-        display: none;
+      .capacity {
+        @include media400 {
+          height: 50%;
+          overflow-y: auto;
+        }
       }
+      // h4::-webkit-scrollbar,
+      // pre::-webkit-scrollbar {
+      //   display: none;
+      // }
     }
   }
-  .essenceSlider {
+  .neotronicSlider {
     .slider {
       position: relative;
       border-radius: 16px;
-      .sliderBtn {
+      .swiper {
+        .swiper-slide {
+          img {
+            height: 350px;
+            @include media440 {
+              height: 100%;
+            }
+          }
+        }
+      }
+      .sliderBtn_container {
         position: absolute;
-        width: 70px;
-        height: 70px;
-        right: 24px;
         bottom: 24px;
-        font-size: 1.6rem;
+        right: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .sliderBtn {
+        width: 56px;
+        height: 56px;
+        font-size: 1.5rem;
         cursor: pointer;
         background: #241f50;
         box-shadow: -10px -10px 20px rgb(50 50 50 / 25%),

@@ -70,40 +70,97 @@ export default function Video({ data, linkHandler, isClosed, theme, mode }) {
                 </>
               ) : (
                 <>
-                  <div className="_username__featuredLink__MeYB7">
-                    <div className="BaseEmbeddedLink_baseEmbeddedLinkWrapper__SlpfZ">
-                      <div className="BaseEmbeddedLink_baseEmbeddedLink__WXu5a">
-                        <div className="BaseEmbeddedLink_baseEmbeddedLinkContainer__SlSm5 BaseEmbeddedLink_baseEmbeddedLinkContainerEmbed__py5x8">
-                          <div className="BaseEmbeddedLink_baseEmbeddedLinkItem__EDHSQ BaseEmbeddedLink_baseEmbeddedLinkItemVisible__63uQ_">
-                            <div className="EmbeddedYouTube_embeddedYouTube__kZebg EmbeddedYouTube_featuredLinkEmbeddedVideo__GERzu">
-                              <div>
-                                <iframe
-                                  className="EmbeddedYouTube_embeddedVideoIframe__BnmH8"
-                                  src={`https://www.youtube.com/embed/${url}?showinfo=0&amp;modestbranding=1&modestbranding=3&controls=0&rel=1&contore=1`}
-                                  allowFullScreen
+                  {theme === "neotronic" ? (
+                    <div className="h-100 overflow-hidden youtube slider p-relative">
+                      <>
+                        {data.Title.trim() ? (
+                          <>
+                            <div className="swiper-content border-none round-0 youtube-text_display">
+                              <p
+                                className="slider_bottom-para"
+                                id="slider__para"
+                              >
+                                <TextLoader
+                                  text={data.Title}
+                                  id="slider__para"
+                                  characterNumber="95"
+                                  btnClass="slider__btn"
                                 />
+                              </p>
+                            </div>
+                          </>
+                        ) : (
+                          ""
+                        )}
+                        <div className="_username__featuredLink__MeYB7">
+                          <div className="BaseEmbeddedLink_baseEmbeddedLinkWrapper__SlpfZ">
+                            <div className="BaseEmbeddedLink_baseEmbeddedLink__WXu5a">
+                              <div className="BaseEmbeddedLink_baseEmbeddedLinkContainer__SlSm5 BaseEmbeddedLink_baseEmbeddedLinkContainerEmbed__py5x8">
+                                <div className="BaseEmbeddedLink_baseEmbeddedLinkItem__EDHSQ BaseEmbeddedLink_baseEmbeddedLinkItemVisible__63uQ_">
+                                  <ReactPlayer
+                                    url={`https://www.youtube.com/embed/${url}?showinfo=0&amp;modestbranding=1&modestbranding=3&controls=0&rel=1&contore=1`}
+                                    light={true}
+                                    width="100%"
+                                    playing={true}
+                                    className="EmbeddedYouTube_embeddedYouTube__kZebg EmbeddedYouTube_featuredLinkEmbeddedVideo__GERzu reactYoutube"
+                                    height="100%"
+                                    onClickPreview={() => {
+                                      const youtubeText_display =
+                                        document.querySelector(
+                                          ".youtube-text_display"
+                                        );
+                                      youtubeText_display.classList.add(
+                                        "d-none"
+                                      );
+                                    }}
+                                    controls
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </>
+                    </div>
+                  ) : (
+                    <>
+                      {" "}
+                      <div className="_username__featuredLink__MeYB7">
+                        <div className="BaseEmbeddedLink_baseEmbeddedLinkWrapper__SlpfZ">
+                          <div className="BaseEmbeddedLink_baseEmbeddedLink__WXu5a">
+                            <div className="BaseEmbeddedLink_baseEmbeddedLinkContainer__SlSm5 BaseEmbeddedLink_baseEmbeddedLinkContainerEmbed__py5x8">
+                              <div className="BaseEmbeddedLink_baseEmbeddedLinkItem__EDHSQ BaseEmbeddedLink_baseEmbeddedLinkItemVisible__63uQ_">
+                                <div className="EmbeddedYouTube_embeddedYouTube__kZebg EmbeddedYouTube_featuredLinkEmbeddedVideo__GERzu">
+                                  <div>
+                                    <iframe
+                                      className="EmbeddedYouTube_embeddedVideoIframe__BnmH8"
+                                      src={`https://www.youtube.com/embed/${url}?showinfo=0&amp;modestbranding=1&modestbranding=3&controls=0&rel=1&contore=1`}
+                                      allowFullScreen
+                                    />
+                                  </div>
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                  {data.Title.trim() ? (
-                    <>
-                      <div className="swiper-content border-none round-0">
-                        <p className="slider_bottom-para" id="slider__para">
-                          <TextLoader
-                            text={data.Title}
-                            id="slider__para"
-                            characterNumber="95"
-                            btnClass="slider__btn"
-                          />
-                        </p>
-                      </div>
+                      {data.Title.trim() ? (
+                        <>
+                          <div className="swiper-content border-none round-0">
+                            <p className="slider_bottom-para" id="slider__para">
+                              <TextLoader
+                                text={data.Title}
+                                id="slider__para"
+                                characterNumber="95"
+                                btnClass="slider__btn"
+                              />
+                            </p>
+                          </div>
+                        </>
+                      ) : (
+                        ""
+                      )}
                     </>
-                  ) : (
-                    ""
                   )}
                 </>
               )}
@@ -118,7 +175,7 @@ export default function Video({ data, linkHandler, isClosed, theme, mode }) {
           className={"video_height_up"}
         >
           <div className="">
-            {theme === "essence" ? (
+            {theme === "neotronic" ? (
               <div className="mt-4 h-100 overflow-hidden youtube slider p-relative">
                 <>
                   {data.Title.trim() ? (

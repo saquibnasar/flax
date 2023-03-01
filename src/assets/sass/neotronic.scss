@@ -1,7 +1,7 @@
 @import "./custom.scss";
 @import "./utilityclasses.scss";
 @import "./font.scss";
-.essence {
+.neotronic {
   .heroBar {
     position: absolute;
     bottom: -110px;
@@ -10,8 +10,20 @@
     left: 50%;
     transform: translateX(-50%);
     background: #323232;
-    box-shadow: 0px 2px 4px rgb(0 0 0 / 15%);
+    box-shadow: 1px 1px 10px #999999;
     border-radius: 12px;
+    @include media574px {
+      width: calc(100% - 32px);
+    }
+    @include media474px {
+      bottom: -165px;
+    }
+    @include media390 {
+      bottom: -200px;
+    }
+    @include media364 {
+      bottom: -240px;
+    }
     h1 {
       font-family: "Poppins";
       font-style: normal;
@@ -50,8 +62,11 @@
     }
     .heroBar-image {
       position: absolute;
-      top: -40px;
+      top: -53px;
       right: 32px;
+      @include media474px {
+        left: 24px;
+      }
       img {
         border-radius: 50%;
         width: 90px;
@@ -59,16 +74,48 @@
       }
     }
   }
+  .neotronicBanner {
+    margin-bottom: 133px;
+    @include media474px {
+      margin-bottom: 175px;
+    }
+    @include media390 {
+      margin-bottom: 210px;
+    }
+    @include media364 {
+      margin-bottom: 250px;
+    }
+  }
   .noBanerHeroBar {
     position: unset;
     width: 100%;
     transform: unset;
-    margin-top: 3rem;
+    margin-top: 4rem;
     .heroBar-image {
       right: 95px;
+      @include media574px {
+        left: 43px;
+      }
     }
   }
-  .essenceIcon {
+
+  .neotronicIcon {
+    svg {
+      font-size: 1.5rem;
+      color: #efefef;
+    }
+    img {
+      width: 32px;
+      height: 32px;
+    }
+  }
+}
+.theme-etyne {
+  .neotronicIcon {
+    svg {
+      color: #0e334c;
+      font-size: 2rem;
+    }
     img {
       width: 32px;
       height: 32px;

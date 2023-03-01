@@ -178,10 +178,17 @@
     border-radius: 4px;
   }
 }
-.theme-essence {
+.theme-neotronic {
+  .videoDirect {
+    ._username__featuredLink__MeYB7 {
+      padding: 0;
+      background: transparent;
+      border-radius: 6px;
+    }
+  }
   .youtube {
     box-shadow: 1px 1px 10px #999999;
-    border-radius: 6px;
+    border-radius: 16px;
     .react-player__preview {
       border-radius: 6px;
     }

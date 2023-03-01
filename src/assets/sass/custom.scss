@@ -35,8 +35,11 @@ body:has(.flax)::-webkit-scrollbar {
 #root:has(.theme-consmy) {
   background: #252525;
 }
-#root:has(.theme-essence) {
+#root:has(.theme-neotronic) {
   background: #5c5c5c;
+}
+#root:has(.theme-neotronicTest) {
+  background: #090b0b;
 }
 .main-container {
   max-width: 25rem;
@@ -59,7 +62,19 @@ body:has(.flax)::-webkit-scrollbar {
     margin: 0 20px;
   }
 }
-.main-container.theme-essence {
+.main-container.theme-neotronicTest {
+  background: #090b0b;
+  max-width: 768px;
+  display: flex;
+  justify-content: center;
+  .container {
+    margin: 0 48px;
+    @include media574px {
+      margin: 0 20px;
+    }
+  }
+}
+.main-container.theme-neotronic {
   background: #5c5c5c;
   max-width: 768px;
   display: flex;
@@ -115,9 +130,14 @@ body:has(.flax)::-webkit-scrollbar {
     border-radius: 0px !important;
   }
 }
-.theme-essence {
+.theme-neotronic {
   .primary_container {
     background: #5c5c5c;
+  }
+}
+.theme-neotronicTest {
+  .primary_container {
+    background: #090b0b;
   }
 }
 .theme-buwayne {
@@ -191,7 +211,7 @@ pre {
   user-select: none;
 }
 pre {
-  white-space: pre-wrap;
+  white-space: inherit;
 }
 
 h1 {
@@ -248,6 +268,34 @@ h1 {
     font-family: "Quicksand";
     font-weight: 600;
     font-size: 16px;
+  }
+}
+.theme-neotronicTest {
+  h1 {
+    font-family: "Quicksand";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 38px;
+    line-height: 115%;
+    color: $white-color;
+  }
+  h2 {
+    font-family: "Quicksand";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 115%;
+    text-transform: capitalize;
+    color: rgba(199, 195, 195, 0.8);
+  }
+  h3 {
+    font-family: "Quicksand";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 115%;
+    text-transform: capitalize;
+    color: rgba(199, 195, 195, 0.8);
   }
 }
 

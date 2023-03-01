@@ -1,7 +1,13 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 
-export default function TextLoader({ text, characterNumber, btnClass }) {
+export default function TextLoader({
+  text,
+  characterNumber,
+  btnClass,
+  capacityCount,
+  id,
+}) {
   let bioText = text.trim().split(" ");
   let primaryText = [];
   let subText = [];
@@ -35,6 +41,10 @@ export default function TextLoader({ text, characterNumber, btnClass }) {
   const showHeroDetail = (event) => {
     setChangeText(text);
     event.target.classList.add("d-none");
+    if (capacityCount < text.trim().split("").length) {
+      const loaderTest = document.getElementById(id);
+      loaderTest.classList.add("capacity");
+    }
   };
 
   return (

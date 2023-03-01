@@ -37,7 +37,7 @@ export default function Loader({ mode, className, theme }) {
                 </section>
               ) : (
                 <>
-                  {theme === "essence" ? (
+                  {theme === "neotronic" ? (
                     <section
                       className="loading-section d-flex"
                       id="loader"

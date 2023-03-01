@@ -74,7 +74,7 @@ export default function Documents({
       rpvcore__viewer.style.height = `${pdf_layer.offsetHeight}px`;
       rpvcore__viewer.style.height = `${pdf_layer.offsetHeight}px`;
       pdf_one.style.height = `${pdf_layer.offsetHeight}px`;
-      if (theme === "essence") {
+      if (theme === "neotronic") {
         pdf_one.style.height = `${pdf_layer.offsetHeight + 16}px`;
       }
     }
@@ -136,187 +136,293 @@ export default function Documents({
   return (
     <>
       {mode ? (
-        <div
-          className="mt-4 h-100 document_container p-relative"
-          style={{ height: "300px" }}
-        >
-          <CSSTransition
-            in={true}
-            appear={true}
-            timeout={600}
-            classNames={"document_height_up"}
-          >
-            <div>
-              {theme === "riorpad" || theme === "buwayne" ? (
-                <div className="pdfSliderDirect">
-                  <NeumorphicContainer
-                    containerclassName="round-25 d-flex"
-                    subcontainerclasses="border-none mt-0 p-2 round-25 w-100 p-relative"
-                  >
-                    <div className="document slider border-none">
-                      {!(loader > 1) ? (
-                        <div className="order-2">
-                          <Loader mode="document" />
+        <>
+          {theme === "neotronic" ? (
+            <div className="neotronic-document_background mt-4">
+              <div
+                className="h-100 overflow-hidden slider document_container p-relative"
+                style={{ height: "370px" }}
+              >
+                <CSSTransition
+                  in={true}
+                  appear={true}
+                  timeout={600}
+                  classNames={"document_height_up"}
+                >
+                  <div>
+                    <div className="p-relative">
+                      <div className="document slider">
+                        {data.Title.trim() ? (
+                          <div
+                            className={
+                              isClosed
+                                ? "swiper-content border-none round-0 order-1"
+                                : "swiper-content border-none round-0"
+                            }
+                          >
+                            <p
+                              className={isClosed ? "slider_bottom-para" : ""}
+                              id="slider__para"
+                            >
+                              <TextLoader
+                                text={data.Title}
+                                id="slider__para"
+                                characterNumber="95"
+                                btnClass="slider__btn"
+                              />
+                            </p>
+                          </div>
+                        ) : (
+                          ""
+                        )}
+
+                        <div className="neotronicDocument">
+                          {!(loader > 2) ? (
+                            <div className="order-2">
+                              <Loader mode="document" theme={theme} />
+                            </div>
+                          ) : (
+                            ""
+                          )}
+
+                          <div className={isClosed ? "order-2 pdf" : "pdf"}>
+                            <NeumorphicContainer
+                              containerclassName="round-25 d-flex"
+                              subcontainerclasses="border-none mt-0 p-2 round-25 w-100 p-relative"
+                            >
+                              <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.0.279/build/pdf.worker.min.js">
+                                <div className="pdf_container">
+                                  <Viewer
+                                    fileUrl={data.URL}
+                                    scrollMode={ScrollMode.Horizontal}
+                                    enablePaging={true}
+                                    horizontal={true}
+                                    plugins={[
+                                      pageNavigationPluginInstance,
+                                      zoomPluginInstance,
+                                    ]}
+                                  />
+                                </div>
+                              </Worker>
+
+                              <button
+                                className="prev-page documentPage_btn"
+                                onClick={() => goToPreviousPage()}
+                              >
+                                <FontAwesomeIcon icon={faChevronLeft} />
+                              </button>
+                              <button
+                                className="next-page documentPage_btn"
+                                onClick={() => goToNextPage()}
+                              >
+                                <FontAwesomeIcon icon={faChevronRight} />
+                              </button>
+
+                              <Zoom>
+                                {(RenderZoomProps) => {
+                                  zoom(RenderZoomProps);
+                                }}
+                              </Zoom>
+                            </NeumorphicContainer>
+                          </div>
+                        </div>
+                        <CurrentPageLabel>
+                          {(RenderCurrentPageLabelProps) =>
+                            totalPageNumber(
+                              RenderCurrentPageLabelProps.numberOfPages
+                            )
+                          }
+                        </CurrentPageLabel>
+                      </div>
+                    </div>
+                  </div>
+                </CSSTransition>
+              </div>
+            </div>
+          ) : (
+            <div
+              className="mt-4 h-100 document_container p-relative"
+              style={{ height: "300px" }}
+            >
+              <CSSTransition
+                in={true}
+                appear={true}
+                timeout={600}
+                classNames={"document_height_up"}
+              >
+                <div>
+                  {theme === "riorpad" || theme === "buwayne" ? (
+                    <div className="pdfSliderDirect">
+                      <NeumorphicContainer
+                        containerclassName="round-25 d-flex"
+                        subcontainerclasses="border-none mt-0 p-2 round-25 w-100 p-relative"
+                      >
+                        <div className="document slider border-none">
+                          {!(loader > 1) ? (
+                            <div className="order-2">
+                              <Loader mode="document" />
+                            </div>
+                          ) : (
+                            ""
+                          )}
+                          <div className={isClosed ? "order-2 pdf" : "pdf"}>
+                            <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.0.279/build/pdf.worker.min.js">
+                              <div className="pdf_container">
+                                <Viewer
+                                  fileUrl={data.URL}
+                                  scrollMode={ScrollMode.Horizontal}
+                                  enablePaging={true}
+                                  horizontal={true}
+                                  plugins={[
+                                    pageNavigationPluginInstance,
+                                    zoomPluginInstance,
+                                  ]}
+                                />
+                              </div>
+                            </Worker>
+
+                            <button
+                              className="prev-page"
+                              onClick={() => goToPreviousPage()}
+                            >
+                              <NeumorphicContainer
+                                containerclassName="document_neumorphic_page_btn cursor_pointer d-flex justify-content-center align-items-center"
+                                subcontainerclasses="p-2 d-flex justify-content-center align-items-center"
+                              >
+                                <FontAwesomeIcon icon={faChevronLeft} />
+                              </NeumorphicContainer>
+                            </button>
+                            <button
+                              className="next-page"
+                              onClick={() => goToNextPage()}
+                            >
+                              <NeumorphicContainer
+                                containerclassName="document_neumorphic_page_btn cursor_pointer d-flex justify-content-center align-items-center"
+                                subcontainerclasses="p-2 d-flex justify-content-center align-items-center"
+                              >
+                                <FontAwesomeIcon icon={faChevronRight} />
+                              </NeumorphicContainer>
+                            </button>
+                            <Zoom>
+                              {(RenderZoomProps) => {
+                                zoom(RenderZoomProps);
+                              }}
+                            </Zoom>
+                          </div>
+                          <CurrentPageLabel>
+                            {(RenderCurrentPageLabelProps) =>
+                              totalPageNumber(
+                                RenderCurrentPageLabelProps.numberOfPages
+                              )
+                            }
+                          </CurrentPageLabel>
+                        </div>
+                      </NeumorphicContainer>
+                      {data.Title.trim() ? (
+                        <div
+                          className={
+                            isClosed
+                              ? "swiper-content border-none round-0 order-1"
+                              : "swiper-content border-none round-0"
+                          }
+                        >
+                          <p
+                            className={isClosed ? "slider_bottom-para" : ""}
+                            id="slider__para"
+                          >
+                            <TextLoader
+                              text={data.Title}
+                              id="slider__para"
+                              characterNumber="95"
+                              btnClass="slider__btn"
+                            />
+                          </p>
                         </div>
                       ) : (
                         ""
                       )}
-                      <div className={isClosed ? "order-2 pdf" : "pdf"}>
-                        <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.0.279/build/pdf.worker.min.js">
-                          <div className="pdf_container">
-                            <Viewer
-                              fileUrl={data.URL}
-                              scrollMode={ScrollMode.Horizontal}
-                              enablePaging={true}
-                              horizontal={true}
-                              plugins={[
-                                pageNavigationPluginInstance,
-                                zoomPluginInstance,
-                              ]}
-                            />
+                    </div>
+                  ) : (
+                    <div className="p-relative pdfSliderDirect">
+                      <div className="document slider">
+                        {!(loader > 1) ? (
+                          <div className="order-2">
+                            <Loader mode="document" theme={theme} />
                           </div>
-                        </Worker>
+                        ) : (
+                          ""
+                        )}
+                        <div className={isClosed ? "order-2 pdf" : "pdf"}>
+                          <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.0.279/build/pdf.worker.min.js">
+                            <div className="pdf_container">
+                              <Viewer
+                                fileUrl={data.URL}
+                                scrollMode={ScrollMode.Horizontal}
+                                enablePaging={true}
+                                horizontal={true}
+                                plugins={[
+                                  pageNavigationPluginInstance,
+                                  zoomPluginInstance,
+                                ]}
+                              />
+                            </div>
+                          </Worker>
 
-                        <button
-                          className="prev-page"
-                          onClick={() => goToPreviousPage()}
-                        >
-                          <NeumorphicContainer
-                            containerclassName="document_neumorphic_page_btn cursor_pointer d-flex justify-content-center align-items-center"
-                            subcontainerclasses="p-2 d-flex justify-content-center align-items-center"
+                          <button
+                            className="prev-page documentPage_btn"
+                            onClick={() => goToPreviousPage()}
                           >
                             <FontAwesomeIcon icon={faChevronLeft} />
-                          </NeumorphicContainer>
-                        </button>
-                        <button
-                          className="next-page"
-                          onClick={() => goToNextPage()}
-                        >
-                          <NeumorphicContainer
-                            containerclassName="document_neumorphic_page_btn cursor_pointer d-flex justify-content-center align-items-center"
-                            subcontainerclasses="p-2 d-flex justify-content-center align-items-center"
+                          </button>
+                          <button
+                            className="next-page documentPage_btn"
+                            onClick={() => goToNextPage()}
                           >
                             <FontAwesomeIcon icon={faChevronRight} />
-                          </NeumorphicContainer>
-                        </button>
-                        <Zoom>
-                          {(RenderZoomProps) => {
-                            zoom(RenderZoomProps);
-                          }}
-                        </Zoom>
-                      </div>
-                      <CurrentPageLabel>
-                        {(RenderCurrentPageLabelProps) =>
-                          totalPageNumber(
-                            RenderCurrentPageLabelProps.numberOfPages
-                          )
-                        }
-                      </CurrentPageLabel>
-                    </div>
-                  </NeumorphicContainer>
-                  {data.Title.trim() ? (
-                    <div
-                      className={
-                        isClosed
-                          ? "swiper-content border-none round-0 order-1"
-                          : "swiper-content border-none round-0"
-                      }
-                    >
-                      <p
-                        className={isClosed ? "slider_bottom-para" : ""}
-                        id="slider__para"
-                      >
-                        <TextLoader
-                          text={data.Title}
-                          id="slider__para"
-                          characterNumber="95"
-                          btnClass="slider__btn"
-                        />
-                      </p>
-                    </div>
-                  ) : (
-                    ""
-                  )}
-                </div>
-              ) : (
-                <div className="p-relative pdfSliderDirect">
-                  <div className="document slider">
-                    {!(loader > 1) ? (
-                      <div className="order-2">
-                        <Loader mode="document" theme={theme} />
-                      </div>
-                    ) : (
-                      ""
-                    )}
-                    <div className={isClosed ? "order-2 pdf" : "pdf"}>
-                      <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.0.279/build/pdf.worker.min.js">
-                        <div className="pdf_container">
-                          <Viewer
-                            fileUrl={data.URL}
-                            scrollMode={ScrollMode.Horizontal}
-                            enablePaging={true}
-                            horizontal={true}
-                            plugins={[
-                              pageNavigationPluginInstance,
-                              zoomPluginInstance,
-                            ]}
-                          />
+                          </button>
+
+                          <Zoom>
+                            {(RenderZoomProps) => {
+                              zoom(RenderZoomProps);
+                            }}
+                          </Zoom>
                         </div>
-                      </Worker>
 
-                      <button
-                        className="prev-page documentPage_btn"
-                        onClick={() => goToPreviousPage()}
-                      >
-                        <FontAwesomeIcon icon={faChevronLeft} />
-                      </button>
-                      <button
-                        className="next-page documentPage_btn"
-                        onClick={() => goToNextPage()}
-                      >
-                        <FontAwesomeIcon icon={faChevronRight} />
-                      </button>
-
-                      <Zoom>
-                        {(RenderZoomProps) => {
-                          zoom(RenderZoomProps);
-                        }}
-                      </Zoom>
+                        <CurrentPageLabel>
+                          {(RenderCurrentPageLabelProps) =>
+                            totalPageNumber(
+                              RenderCurrentPageLabelProps.numberOfPages
+                            )
+                          }
+                        </CurrentPageLabel>
+                      </div>
+                      {data.Title.trim() ? (
+                        <div className="swiper-content border-none round-0 mt-3">
+                          <p
+                            className={isClosed ? "slider_bottom-para" : ""}
+                            id="slider__para"
+                          >
+                            <TextLoader
+                              text={data.Title}
+                              id="slider__para"
+                              characterNumber="95"
+                              btnClass="slider__btn"
+                            />
+                          </p>
+                        </div>
+                      ) : (
+                        ""
+                      )}
                     </div>
-
-                    <CurrentPageLabel>
-                      {(RenderCurrentPageLabelProps) =>
-                        totalPageNumber(
-                          RenderCurrentPageLabelProps.numberOfPages
-                        )
-                      }
-                    </CurrentPageLabel>
-                  </div>
-                  {data.Title.trim() ? (
-                    <div className="swiper-content border-none round-0 mt-3">
-                      <p
-                        className={isClosed ? "slider_bottom-para" : ""}
-                        id="slider__para"
-                      >
-                        <TextLoader
-                          text={data.Title}
-                          id="slider__para"
-                          characterNumber="95"
-                          btnClass="slider__btn"
-                        />
-                      </p>
-                    </div>
-                  ) : (
-                    ""
                   )}
                 </div>
-              )}
+              </CSSTransition>
             </div>
-          </CSSTransition>
-        </div>
+          )}
+        </>
       ) : (
         <>
-          {theme === "essence" ? (
+          {theme === "neotronic" ? (
             <div
               className="mt-4 h-100 overflow-hidden slider document_container p-relative"
               style={{ height: "370px" }}
@@ -354,7 +460,7 @@ export default function Documents({
                         ""
                       )}
 
-                      <div className="essenceDocument">
+                      <div className="neotronicDocument">
                         {!(loader > 2) ? (
                           <div className="order-2">
                             <Loader mode="document" theme={theme} />
@@ -598,9 +704,7 @@ export default function Documents({
                           <div
                             className={
                               isClosed
-                                ? `download order-3 pb-3 ${
-                                    isClosed === "etyne" ? "d-none" : ""
-                                  }`
+                                ? `download order-3 pb-3`
                                 : "download pb-3"
                             }
                           >

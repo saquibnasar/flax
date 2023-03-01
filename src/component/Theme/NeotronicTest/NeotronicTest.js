@@ -7,11 +7,10 @@ import TextLoader from "../../TextLoader";
 import Card from "../../Links/Card";
 import Slider from "../../Links/Slider";
 import Footer from "../../Footer";
-import ReactSoundCloud from "react-soundcloud-embedded";
 import Spotify from "react-spotify-embed";
 import Video from "../../Links/Video";
 import Documents from "../../Links/Documents";
-export default function Essence(props) {
+export default function NeotronicTest(props) {
   const slider = JSON.parse(props.modeData.Slider.Links);
   let isSliderValueTrue = false;
   for (const slidertest of slider) {
@@ -30,74 +29,10 @@ export default function Essence(props) {
   };
   return (
     <>
-      <div className="TopBar">
+      <div className="neotronic p-relative">
         {props.data.ImageLocation ? (
-          <div>
-            <img
-              style={{
-                borderRadius: "50%",
-                width: "65px",
-                height: "65px",
-              }}
-              className="img-fluid"
-              src={props.data.ImageLocation}
-              alt=""
-            />
-          </div>
-        ) : (
-          ""
-        )}
-        <RWebShare
-          data={{
-            url: window.location.href,
-          }}
-        >
-          <button className="share cursor_pointer">
-            <p>share</p>
-            <FontAwesomeIcon icon={faArrowUpFromBracket} />
-          </button>
-        </RWebShare>
-      </div>
-      <div className="TopBar topBarEssence p-fixed d-none">
-        {props.data.ImageLocation ? (
-          <div>
-            <img
-              style={{
-                borderRadius: "50%",
-                width: "65px",
-                height: "65px",
-              }}
-              className="img-fluid"
-              src={props.data.ImageLocation}
-              alt=""
-            />
-          </div>
-        ) : (
-          ""
-        )}
-        <RWebShare
-          data={{
-            url: window.location.href,
-          }}
-        >
-          <button className="share cursor_pointer">
-            <p>share</p>
-            <FontAwesomeIcon icon={faArrowUpFromBracket} />
-          </button>
-        </RWebShare>
-      </div>
-      <div className="essence p-relative">
-        {props.heroData.length ? (
-          <div
-            style={{ marginBottom: "133px" }}
-            className="slider border-none round-0 box-shadow-none"
-          >
-            <ImgSlider
-              settings={settings}
-              sliderImg={props.heroData}
-              className="round-0"
-              border="slick-list-border-0"
-            />
+          <div className="heroBar-image">
+            <img className="img-fluid" src={props.data.ImageLocation} alt="" />
           </div>
         ) : (
           ""
@@ -108,18 +43,7 @@ export default function Essence(props) {
               props.heroData.length ? "heroBar" : "noBanerHeroBar heroBar"
             }
           >
-            {props.data.ImageLocation ? (
-              <div className="heroBar-image">
-                <img
-                  className="img-fluid"
-                  src={props.data.ImageLocation}
-                  alt=""
-                />
-              </div>
-            ) : (
-              ""
-            )}
-            <div className="px-4">
+            <div className="mt-sm-4">
               <h1>
                 {props.headingText}{" "}
                 <span>{props.spanText ? props.spanText : ""} </span>
@@ -129,6 +53,22 @@ export default function Essence(props) {
                 {props.data.Location}
                 {props.data.Country ? `, ${props.data.Country}` : ""}
               </h3>
+            </div>
+            <div className="order-1">
+              {props.data.Bio.trim() ? (
+                <div className="hero-detail">
+                  <pre id="hero__para">
+                    <TextLoader
+                      text={props.data.Bio}
+                      id="hero__para"
+                      characterNumber="200"
+                      btnClass="hero__btn"
+                    />
+                  </pre>
+                </div>
+              ) : (
+                ""
+              )}
             </div>
             <div className="heroIcon">
               <Card
@@ -140,22 +80,6 @@ export default function Essence(props) {
         </div>
       </div>
       <div className="d-flex flex-direction-column">
-        <div className="container order-1">
-          {props.data.Bio.trim() ? (
-            <div className="hero-detail">
-              <pre id="hero__para">
-                <TextLoader
-                  text={props.data.Bio}
-                  id="hero__para"
-                  characterNumber="200"
-                  btnClass="hero__btn"
-                />
-              </pre>
-            </div>
-          ) : (
-            ""
-          )}
-        </div>
         <div className="container order-2">
           <div className="card-section">
             <Card
@@ -165,7 +89,7 @@ export default function Essence(props) {
           </div>
         </div>
         {isSliderValueTrue && props.modeData.Slider.isActive ? (
-          <div className="container essenceSlider order-3">
+          <div className="container neotronicSlider order-3">
             <Slider
               data={JSON.parse(props.modeData.Slider.Links)}
               theme={props.theme}
@@ -175,12 +99,12 @@ export default function Essence(props) {
           ""
         )}
         {/* {props.soundcloud[0] && props.soundcloud[0].isActive ? (
-          <div className="container mt-4 soundcloud order-4">
-            <ReactSoundCloud height="300px" url={props.soundcloud[0].URL} />
-          </div>
-        ) : (
-          ""
-        )} */}
+      <div className="container mt-4 soundcloud order-4">
+        <ReactSoundCloud height="300px" url={props.soundcloud[0].URL} />
+      </div>
+    ) : (
+      ""
+    )} */}
         {props.spotify[0] && props.spotify[0].isActive ? (
           <div className="container mt-4 order-5">
             <Spotify
@@ -207,7 +131,7 @@ export default function Essence(props) {
         props.modeData.Document.URL.trim() &&
         props.modeData.Document.isActive ? (
           <div className="container order-7 card-section mt-4">
-            <div className="essence-document_background">
+            <div className="neotronic-document_background">
               <Documents data={props.modeData.Document} theme={props.theme} />
             </div>
           </div>

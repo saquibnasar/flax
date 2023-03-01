@@ -1,0 +1,45 @@
+@import "./custom.scss";
+@import "./utilityclasses.scss";
+@import "./font.scss";
+.neotronicTest {
+  background: linear-gradient(0deg, rgba(20, 20, 20, 0.01) 0%, #232020 50%);
+
+  .heroBar-image {
+    position: relative;
+    img {
+      height: 500px;
+      width: 100%;
+    }
+  }
+  .heroBar-image::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      0deg,
+      rgba(36, 31, 80, 0.1),
+      rgba(36, 31, 80, 0.1)
+    );
+    opacity: 0.1;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 100000;
+  }
+  .hero-detail {
+    border: none;
+    background: transparent;
+    padding: 0;
+    pre {
+      font-family: "Cairo";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 20.6px;
+      line-height: 132.5%;
+      text-align: justify;
+      text-transform: capitalize;
+      color: #ffffff;
+    }
+  }
+}

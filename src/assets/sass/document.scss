@@ -233,6 +233,8 @@
     }
   }
   .document {
+    border-top-left-radius: 11px;
+    border-top-right-radius: 11px;
     .download {
       border-top: none;
     }
@@ -1100,8 +1102,8 @@
   }
 }
 
-.theme-essence {
-  .essence-document_background {
+.theme-neotronic {
+  .neotronic-document_background {
     background: #323232;
     padding: 24px 32px;
     border-radius: 16px;
@@ -1121,7 +1123,7 @@
         line-height: 23px;
       }
     }
-    .essenceDocument {
+    .neotronicDocument {
       padding: 0px 93px;
       @media (max-width: 767px) {
         padding: 0px 92px;
