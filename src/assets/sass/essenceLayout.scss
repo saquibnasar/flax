@@ -1,0 +1,108 @@
+@import "./custom.scss";
+@import "./utilityclasses.scss";
+@import "./font.scss";
+@import "./mediaqueries.scss";
+.essenceLayout {
+  h1 {
+    font-family: "Quicksand";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 26.4px;
+    line-height: 115%;
+    text-transform: uppercase;
+    color: $white-color;
+    margin-top: 48px;
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  h2 {
+    font-family: "Quicksand";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 115%;
+  }
+  h3 {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 21px;
+    text-align: center;
+    color: $white-color;
+    margin-top: 16px;
+    text-align: center;
+  }
+  h5 {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 21px;
+    text-align: center;
+    color: $white-color;
+    margin-top: 4px;
+    margin-bottom: 24px;
+    a {
+      font-family: "Open Sans";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 15px;
+      line-height: 21px;
+      text-align: center;
+      display: inline;
+      color: $white-color;
+    }
+  }
+  .BackBUtton {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 21px;
+    align-items: center;
+    color: #9f9d9d;
+    margin-top: 90px;
+    display: flex;
+    margin-inline: auto;
+    cursor: pointer;
+  }
+  p {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    text-transform: capitalize;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 6px;
+  }
+  img {
+    width: 55px;
+    border-radius: 8px;
+    margin-right: 12px;
+  }
+  .share {
+    color: $white-color;
+    padding: 7.25px 16.3438px 7.25px 16.3281px;
+    background: #3e3e3e;
+    border-radius: 7px;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  .slider {
+    .swiper {
+      .swiper-slide {
+        img {
+          height: 325px;
+          @include media474px {
+            height: 100%;
+          }
+          margin-right: 0px;
+        }
+      }
+    }
+  }
+  .footer {
+    margin-top: 16px;
+  }
+}

@@ -325,7 +325,13 @@
 .theme-buwayne {
   .slider {
     box-shadow: unset;
-
+    .neumorphic_layer2 {
+      .swiper {
+        .slick-list {
+          border-radius: 25px;
+        }
+      }
+    }
     .swiper {
       border: none;
       border-radius: unset;
@@ -334,6 +340,7 @@
         border-top-left-radius: 25px;
         border-top-right-radius: 25px;
       }
+
       .slider_bottom-para {
         font-weight: 700;
         font-size: 18px;
@@ -370,7 +377,7 @@
       background: transparent;
       .download_btn {
         padding: 10px 21px;
-        box-shadow: none;
+        // box-shadow: none;
         a {
           font-family: "Poppins", sans-serif;
           font-weight: 600;
@@ -476,6 +483,7 @@
         border-radius: 6px;
         padding: 16px;
         transition: 0.5s ease-in-out;
+        z-index: 1;
         @include media500 {
           width: 68%;
         }
@@ -530,7 +538,7 @@
         }
       }
       .capacity {
-        @include media400 {
+        @include media474px {
           height: 50%;
           overflow-y: auto;
         }
@@ -541,10 +549,129 @@
       // }
     }
   }
+
   .neotronicSlider {
     .slider {
       position: relative;
       border-radius: 16px;
+      box-shadow: 1px 1px 10px #999999;
+      .swiper {
+        .swiper-slide {
+          img {
+            height: 350px;
+            @include media440 {
+              height: 100%;
+            }
+          }
+        }
+      }
+      .sliderBtn_container {
+        position: absolute;
+        bottom: 24px;
+        right: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .sliderBtn {
+        width: 56px;
+        height: 56px;
+        font-size: 1.5rem;
+        cursor: pointer;
+        background: #241f50;
+        box-shadow: -10px -10px 20px rgb(50 50 50 / 25%),
+          10px 10px 20px rgb(36 31 80 / 20%);
+        border-radius: 50px;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+}
+.theme-essence {
+  .slider {
+    .swiper {
+      border: none;
+    }
+    img {
+      height: 210px;
+      border-radius: 6px;
+      @include media474px {
+        height: 100%;
+      }
+    }
+    .swiper-content {
+      border: none;
+      border-radius: 0px;
+      padding: 0px;
+      background: transparent;
+      img {
+        border-radius: 6px;
+      }
+      h4,
+      p {
+        font-family: "Open Sans";
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 25px;
+        color: #fff;
+        margin-bottom: 13px;
+
+        .extra-btn {
+          font-family: "Open Sans";
+          font-style: normal;
+          font-weight: 500;
+          font-size: 18px;
+          line-height: 25px;
+          color: #fff;
+        }
+      }
+      p {
+        font-size: 21px;
+        .extra-btn {
+          font-size: 21px;
+        }
+      }
+
+      pre {
+        font-family: "Open Sans";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 25px;
+        color: #b8b8b8;
+        margin-top: 13px;
+        .extra-btn {
+          font-family: "Open Sans";
+          font-style: normal;
+          font-weight: 400;
+          font-size: 15px;
+          line-height: 25px;
+          color: #b8b8b8;
+        }
+      }
+    }
+    .download {
+      width: 46px;
+      height: 42px;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 25px 0px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      bottom: 0px;
+      right: -5px;
+    }
+  }
+  .neotronicSlider {
+    .slider {
+      position: relative;
+      border-radius: 16px;
+      box-shadow: 1px 1px 10px #999999;
       .swiper {
         .swiper-slide {
           img {

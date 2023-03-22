@@ -55,19 +55,38 @@ export default function Loader({ mode, className, theme }) {
                       <div className="loading"></div>
                     </section>
                   ) : (
-                    <section
-                      className="loading-section d-flex"
-                      id="loader"
-                      style={{
-                        position: "absolute",
-                        left: "0px",
-                        top: "0",
-                        zIndex: 7,
-                        height: "306px",
-                      }}
-                    >
-                      <div className="loading"></div>
-                    </section>
+                    <>
+                      {theme === "essence" ? (
+                        <section
+                          className="loading-section d-flex"
+                          id="loader"
+                          style={{
+                            // position: "absolute",
+                            // left: "0px",
+                            // top: "0",
+                            zIndex: 7,
+                            height: "306px",
+                            margin: "auto",
+                          }}
+                        >
+                          <div className="loading"></div>
+                        </section>
+                      ) : (
+                        <section
+                          className="loading-section d-flex"
+                          id="loader"
+                          style={{
+                            position: "absolute",
+                            left: "0px",
+                            top: "0",
+                            zIndex: 7,
+                            height: "306px",
+                          }}
+                        >
+                          <div className="loading"></div>
+                        </section>
+                      )}
+                    </>
                   )}
                 </>
               )}

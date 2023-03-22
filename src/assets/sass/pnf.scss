@@ -1,0 +1,54 @@
+@import "./font.scss";
+@import "./custom.scss";
+@import "./mediaqueries.scss";
+.main-container:has(.pnf) {
+  max-width: 768px;
+}
+#root:has(.pnf) {
+  background: #fff;
+}
+.pnf {
+  h1 {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 36px;
+
+    color: #7d7d7d;
+    margin-top: 1.5rem;
+  }
+  h2 {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: #7d7d7d;
+    margin-top: 8px;
+    a {
+      color: #555e6e;
+      font-family: "Open Sans";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 24px;
+      text-decoration-line: underline;
+    }
+  }
+  .pnf_link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem;
+    gap: 1rem;
+    @include media400 {
+      gap: 1rem;
+    }
+    img {
+      @include media400 {
+        width: 90%;
+      }
+    }
+  }
+}

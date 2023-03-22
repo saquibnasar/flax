@@ -13,8 +13,9 @@ import { RWebShare } from "react-web-share";
 import Neotronic from "./Theme/neotronic/Neotronic";
 import ReactSoundCloud from "react-soundcloud-embedded";
 import Spotify from "react-spotify-embed";
-import NeotronicTest from "./Theme/NeotronicTest/NeotronicTest";
-export default function Home() {
+import Essence from "./Theme/essence/Essence";
+import { useNavigate } from "react-router-dom";
+export default function Home(props) {
   const { linkType, userId } = useParams();
   const [data, setData] = useState();
   const [modeData, setModeData] = useState();
@@ -30,13 +31,17 @@ export default function Home() {
     autoplaySpeed: 3000,
   };
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     fetch(
       `https://7drkndiu7g.execute-api.ap-south-1.amazonaws.com/v1/previewprofile/${userId}`
     )
-      .then((res) => res)
       .then((res) => res.json())
       .then((data) => {
+        if (data["UserMessage"] === "Server Side Error") {
+          navigate("/notfound");
+        }
         if (linkType === "direct") {
           const StandardLinks = JSON.parse(
             data.DirectLinks.StandardLinks.Links
@@ -90,6 +95,9 @@ export default function Home() {
         setTheme(data.Theme.toLowerCase().split(" ")[0]);
         setMode(linkType);
         setData(data.PersonalInfo);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }, [userId]);
 
@@ -109,6 +117,12 @@ export default function Home() {
       (value) => value.Name === "Spotify"
     );
 
+    props.dataFetcher(
+      data,
+      JSON.parse(modeData.Slider.Links),
+      theme,
+      window.location.href
+    );
     window.addEventListener("scroll", () => {
       const TopBar = document.querySelector(".TopBar");
       const topBarNeotronic = document.querySelector(".topBarNeotronic");
@@ -209,7 +223,12 @@ export default function Home() {
                         theme={theme}
                         mode={mode}
                       />
-                      <Footer theme={theme} mode={theme} userName={data.Name} />
+                      <Footer
+                        theme={theme}
+                        mode={theme}
+                        userName={data.Name}
+                        linkType={linkType}
+                      />
                     </div>
                   </NeumorphicContainer>
                 ) : (
@@ -258,7 +277,12 @@ export default function Home() {
                       mode={mode}
                     />
 
-                    <Footer theme={theme} mode={theme} userName={data.Name} />
+                    <Footer
+                      theme={theme}
+                      mode={theme}
+                      userName={data.Name}
+                      linkType={linkType}
+                    />
                   </div>
                 )}
               </CSSTransition>
@@ -283,15 +307,20 @@ export default function Home() {
                         soundcloud={soundcloud}
                         spotify={spotify}
                       />
-                      <Footer theme={theme} mode={theme} userName={data.Name} />
+                      <Footer
+                        theme={theme}
+                        mode={theme}
+                        userName={data.Name}
+                        linkType={linkType}
+                      />
                     </div>
                   </section>
                 ) : (
                   <>
-                    {theme === "neotronicTest" ? (
-                      <section className="neotronic primary_container">
+                    {theme === "essence" ? (
+                      <section className="essence primary_container">
                         <div className="hero">
-                          <Neotronic
+                          <Essence
                             heroData={hero}
                             data={data}
                             headingText={headingText}
@@ -303,6 +332,7 @@ export default function Home() {
                             spotify={spotify}
                           />
                         </div>
+                        <Footer theme={theme} userName={data.Name} />
                       </section>
                     ) : (
                       <>
@@ -335,17 +365,19 @@ export default function Home() {
                                           : "logo-only text-center d-flex justify-content-center"
                                       }
                                     >
-                                      <NeumorphicContainer
-                                        containerclassName="rounded-circle p-1px d-flex"
-                                        subcontainerclasses="rounded-circle p-1 d-flex"
-                                        isLayer={false}
-                                      >
+                                      {theme === "riorpad" ? (
                                         <img
                                           className="img-fluid"
                                           src={data.ImageLocation}
                                           alt=""
                                         />
-                                      </NeumorphicContainer>
+                                      ) : (
+                                        <img
+                                          className="img-fluid"
+                                          src={data.ImageLocation}
+                                          alt=""
+                                        />
+                                      )}
                                     </div>
                                   ) : (
                                     ""
@@ -475,6 +507,7 @@ export default function Home() {
                                 theme={theme}
                                 mode={theme}
                                 userName={data.Name}
+                                linkType={linkType}
                               />
                             </div>
                           </NeumorphicContainer>
@@ -522,7 +555,7 @@ export default function Home() {
                                 <div
                                   className={
                                     hero.length && data.ImageLocation
-                                      ? "mt-2rem"
+                                      ? "mt-5"
                                       : "mt-3"
                                   }
                                 >
@@ -630,7 +663,12 @@ export default function Home() {
                               ""
                             )}
 
-                            <Footer mode={mode} userName={data.Name} />
+                            <Footer
+                              mode={mode}
+                              userName={data.Name}
+                              theme={theme}
+                              linkType={linkType}
+                            />
                           </div>
                         )}
                       </>

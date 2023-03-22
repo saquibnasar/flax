@@ -4,6 +4,8 @@ import { CSSTransition } from "react-transition-group";
 import TextLoader from "../TextLoader";
 import NeumorphicContainer from "../NeumorphicContainer";
 import ReactPlayer from "react-player/youtube";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeading } from "@fortawesome/free-solid-svg-icons";
 export default function Video({ data, linkHandler, isClosed, theme, mode }) {
   let url;
   if (data.URL.split("/")) {
@@ -70,28 +72,49 @@ export default function Video({ data, linkHandler, isClosed, theme, mode }) {
                 </>
               ) : (
                 <>
-                  {theme === "neotronic" ? (
+                  {theme === "neotronic" || theme === "essence" ? (
                     <div className="h-100 overflow-hidden youtube slider p-relative">
                       <>
                         {data.Title.trim() ? (
                           <>
                             <div className="swiper-content border-none round-0 youtube-text_display">
-                              <p
-                                className="slider_bottom-para"
-                                id="slider__para"
+                              <h4
+                                className="slider_bottom-para d-none"
+                                id="neotronic_title"
                               >
                                 <TextLoader
                                   text={data.Title}
-                                  id="slider__para"
-                                  characterNumber="95"
+                                  id="neotronic_title"
+                                  characterNumber="50"
                                   btnClass="slider__btn"
+                                  capacityCount={120}
                                 />
-                              </p>
+                              </h4>
                             </div>
                           </>
                         ) : (
                           ""
                         )}
+                        <div className="sliderBtn_container">
+                          {data.Title && data.Title.trim() ? (
+                            <button
+                              className="sliderBtn sliderBtn_heading youtube-btn_display"
+                              onClick={() => {
+                                const slider__para =
+                                  document.querySelector("#neotronic_title");
+                                if (slider__para.classList.contains("d-none")) {
+                                  slider__para.classList.remove("d-none");
+                                } else {
+                                  slider__para.classList.add("d-none");
+                                }
+                              }}
+                            >
+                              <FontAwesomeIcon icon={faHeading} />
+                            </button>
+                          ) : (
+                            ""
+                          )}
+                        </div>
                         <div className="_username__featuredLink__MeYB7">
                           <div className="BaseEmbeddedLink_baseEmbeddedLinkWrapper__SlpfZ">
                             <div className="BaseEmbeddedLink_baseEmbeddedLink__WXu5a">
@@ -175,25 +198,49 @@ export default function Video({ data, linkHandler, isClosed, theme, mode }) {
           className={"video_height_up"}
         >
           <div className="">
-            {theme === "neotronic" ? (
+            {theme === "neotronic" || theme === "essence" ? (
               <div className="mt-4 h-100 overflow-hidden youtube slider p-relative">
                 <>
                   {data.Title.trim() ? (
                     <>
                       <div className="swiper-content border-none round-0 youtube-text_display">
-                        <p className="slider_bottom-para" id="slider__para">
+                        <h4
+                          className="slider_bottom-para d-none"
+                          id="neotronic_title"
+                        >
                           <TextLoader
                             text={data.Title}
-                            id="slider__para"
-                            characterNumber="95"
+                            id="neotronic_title"
+                            characterNumber="50"
                             btnClass="slider__btn"
+                            capacityCount={120}
                           />
-                        </p>
+                        </h4>
                       </div>
                     </>
                   ) : (
                     ""
                   )}
+                  <div className="sliderBtn_container">
+                    {data.Title && data.Title.trim() ? (
+                      <button
+                        className="sliderBtn sliderBtn_heading youtube-btn_display"
+                        onClick={() => {
+                          const slider__para =
+                            document.querySelector("#neotronic_title");
+                          if (slider__para.classList.contains("d-none")) {
+                            slider__para.classList.remove("d-none");
+                          } else {
+                            slider__para.classList.add("d-none");
+                          }
+                        }}
+                      >
+                        <FontAwesomeIcon icon={faHeading} />
+                      </button>
+                    ) : (
+                      ""
+                    )}
+                  </div>
                   <div className="_username__featuredLink__MeYB7">
                     <div className="BaseEmbeddedLink_baseEmbeddedLinkWrapper__SlpfZ">
                       <div className="BaseEmbeddedLink_baseEmbeddedLink__WXu5a">
@@ -207,11 +254,19 @@ export default function Video({ data, linkHandler, isClosed, theme, mode }) {
                               className="EmbeddedYouTube_embeddedYouTube__kZebg EmbeddedYouTube_featuredLinkEmbeddedVideo__GERzu reactYoutube"
                               height="100%"
                               onClickPreview={() => {
-                                const youtubeText_display =
-                                  document.querySelector(
-                                    ".youtube-text_display"
-                                  );
-                                youtubeText_display.classList.add("d-none");
+                                if (theme === "neotronic") {
+                                  const youtubeText_display =
+                                    document.querySelector(
+                                      ".youtube-text_display"
+                                    );
+                                  const youtubeBtn_display =
+                                    document.querySelector(
+                                      ".youtube-btn_display"
+                                    );
+
+                                  youtubeText_display.classList.add("d-none");
+                                  youtubeBtn_display.classList.add("d-none");
+                                }
                               }}
                               controls
                             />
@@ -251,14 +306,21 @@ export default function Video({ data, linkHandler, isClosed, theme, mode }) {
                       </div>
                     </NeumorphicContainer>
                     <div className="d-flex justify-content-center mt-2">
-                      <CloseBtn linkHandler={linkHandler} mode="neuMorphism" />
+                      {!isClosed && data.Title ? (
+                        <CloseBtn
+                          linkHandler={linkHandler}
+                          mode="neuMorphism"
+                        />
+                      ) : (
+                        ""
+                      )}
                     </div>
                   </>
                 ) : (
                   <>
                     {data.Title.trim() ? (
                       <>
-                        {isClosed ? (
+                        {isClosed && data.Title ? (
                           <div className="swiper-content border-none round-0">
                             <p className="slider_bottom-para" id="slider__para">
                               <TextLoader
@@ -296,7 +358,11 @@ export default function Video({ data, linkHandler, isClosed, theme, mode }) {
                       </div>
                     </div>
 
-                    {!isClosed ? <CloseBtn linkHandler={linkHandler} /> : ""}
+                    {!isClosed && data.Title ? (
+                      <CloseBtn linkHandler={linkHandler} />
+                    ) : (
+                      ""
+                    )}
                   </>
                 )}
               </div>

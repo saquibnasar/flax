@@ -38,11 +38,11 @@ body:has(.flax)::-webkit-scrollbar {
 #root:has(.theme-neotronic) {
   background: #5c5c5c;
 }
-#root:has(.theme-neotronicTest) {
+#root:has(.theme-essence) {
   background: #090b0b;
 }
 .main-container {
-  max-width: 25rem;
+  max-width: 430px;
   width: 100%;
   margin: 0 auto;
   overflow: hidden;
@@ -62,7 +62,7 @@ body:has(.flax)::-webkit-scrollbar {
     margin: 0 20px;
   }
 }
-.main-container.theme-neotronicTest {
+.main-container.theme-essence {
   background: #090b0b;
   max-width: 768px;
   display: flex;
@@ -70,7 +70,7 @@ body:has(.flax)::-webkit-scrollbar {
   .container {
     margin: 0 48px;
     @include media574px {
-      margin: 0 20px;
+      margin: 0 26px;
     }
   }
 }
@@ -105,23 +105,28 @@ body:has(.flax)::-webkit-scrollbar {
 .main-container.theme-riorpad,
 .main-container.theme-buwayne {
   .container {
-    margin: 0 20px;
+    margin: 0 10px;
   }
 }
 .theme-riorpad {
   .neumorphic {
-    box-shadow: 4px 4px 12px rgb(236 236 236 / 15%),
-      -4px -4px 12px rgb(0 0 0 / 5%);
+    box-shadow: 6px 6px 16px 0 rgb(209 205 199 / 50%),
+      -6px -6px 16px 0 rgb(255 255 255 / 50%);
     background: $white-color;
 
     .neumorphic_layer2 {
-      background: #d6e5f6;
+      background: #fff;
+      box-shadow: 6px 6px 16px 0 rgb(209 205 199 / 50%),
+        -6px -6px 16px 0 rgb(255 255 255 / 50%);
       .neumorphic_layer3 {
-        background: #eaf2f9;
+        background: #fff;
         .primary_container {
-          background: #eaf2f9;
+          background: #fff;
         }
       }
+    }
+    .sub-container {
+      background: #ccc;
     }
   }
 }
@@ -135,22 +140,27 @@ body:has(.flax)::-webkit-scrollbar {
     background: #5c5c5c;
   }
 }
-.theme-neotronicTest {
+.theme-essence {
   .primary_container {
     background: #090b0b;
   }
 }
 .theme-buwayne {
   .neumorphic {
-    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.15),
-      -4px -4px 12px rgba(236, 236, 236, 0.05);
-    background: #60656b;
+    box-shadow: 6px 6px 16px 0 rgb(0 0 0 / 50%),
+      -6px -6px 16px 0 rgb(51 51 51 / 50%);
+    background: #292929;
+    .sub-container {
+      background: #383636;
+    }
     .neumorphic_layer2 {
-      background: #111315;
+      background: #292929;
+      box-shadow: 6px 6px 16px 0 rgb(0 0 0 / 50%),
+        -6px -6px 16px 0 rgb(51 51 51 / 50%);
       .neumorphic_layer3 {
-        background: #202427;
+        background: #292929;
         .primary_container {
-          background: #202427;
+          background: #292929;
         }
       }
     }
@@ -255,7 +265,7 @@ h1 {
 .theme-etyne {
   h1 {
     font-family: "Quicksand";
-    font-weight: 400;
+    font-weight: 600;
     font-size: 22px;
     line-height: 28px;
     color: $black-color;
@@ -270,7 +280,7 @@ h1 {
     font-size: 16px;
   }
 }
-.theme-neotronicTest {
+.theme-essence {
   h1 {
     font-family: "Quicksand";
     font-style: normal;
@@ -278,6 +288,9 @@ h1 {
     font-size: 38px;
     line-height: 115%;
     color: $white-color;
+    @include media474px {
+      font-size: 32.4px;
+    }
   }
   h2 {
     font-family: "Quicksand";
@@ -287,6 +300,9 @@ h1 {
     line-height: 115%;
     text-transform: capitalize;
     color: rgba(199, 195, 195, 0.8);
+    @include media474px {
+      font-size: 16.44px;
+    }
   }
   h3 {
     font-family: "Quicksand";
@@ -296,6 +312,9 @@ h1 {
     line-height: 115%;
     text-transform: capitalize;
     color: rgba(199, 195, 195, 0.8);
+    @include media474px {
+      font-size: 16.44px;
+    }
   }
 }
 

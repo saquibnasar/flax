@@ -22,7 +22,7 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faMailBulk } from "@fortawesome/free-solid-svg-icons";
 import { faLocation } from "@fortawesome/free-solid-svg-icons";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
-import { faGooglePay } from "@fortawesome/free-brands-svg-icons";
+import { faGooglePlay } from "@fortawesome/free-brands-svg-icons";
 import { faM } from "@fortawesome/free-solid-svg-icons";
 import { faKaggle } from "@fortawesome/free-brands-svg-icons";
 import { faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
@@ -59,20 +59,29 @@ import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import TextLoader from "../TextLoader";
 export default function Card({ StandardLinks, CustomLinks, theme, heroData }) {
   // social_media if needs
+  let classN = "social_media";
+  if (theme === "dahwoo" || theme === "etyne") {
+    classN =
+      "social_media d-flex justify-content-center align-items-center mt-4 gap-2";
+  } else if (theme === "neotronic" || theme === "essence") {
+    classN = "social_media";
+    let filterstanderdLinks;
+    if (StandardLinks) {
+      filterstanderdLinks = StandardLinks.filter((value) => value.isActive);
+    }
+
+    if (
+      (theme === "essence" || theme === "neotronic") &&
+      filterstanderdLinks &&
+      filterstanderdLinks.length < 5
+    ) {
+      classN = "social_media d-flex justify-content-center";
+    }
+  }
   return (
     <>
-      <div className="cardItem">
-        <div
-          className={
-            theme === "dahwoo" || theme === "etyne"
-              ? "social_media d-flex justify-content-center align-items-center mt-4 gap-2"
-              : `${
-                  theme === "neotronic" || theme === "neotronic"
-                    ? "social_media"
-                    : ""
-                }`
-          }
-        >
+      <div className={theme === "essence" ? "cardItem row" : "cardItem"}>
+        <div className={classN}>
           {StandardLinks
             ? StandardLinks.map((value, id) => {
                 if (!value.isActive) {
@@ -114,7 +123,7 @@ export default function Card({ StandardLinks, CustomLinks, theme, heroData }) {
                   icon = faMailBulk;
                 } else if (value.Name === "Applemusic") {
                   icon = faMusic;
-                } else if (value.Name === "AppStore") {
+                } else if (value.Name === "Appstore") {
                   icon = faAppStore;
                 } else if (value.Name === "Behance") {
                   icon = faBehance;
@@ -149,7 +158,7 @@ export default function Card({ StandardLinks, CustomLinks, theme, heroData }) {
                 } else if (value.Name === "Github") {
                   icon = faGithub;
                 } else if (value.Name === "Googleplay") {
-                  icon = faGooglePay;
+                  icon = faGooglePlay;
                 } else if (value.Name === "Indiamart") {
                   icon = faM;
                 } else if (value.Name === "Kaggle") {
@@ -211,6 +220,7 @@ export default function Card({ StandardLinks, CustomLinks, theme, heroData }) {
                       href={link}
                       target="_blank"
                       rel="noopener noreferrer"
+                      className="w-100"
                     >
                       <NeumorphicContainer
                         containerclassName="mt-4 round-10 d-flex"
@@ -242,7 +252,7 @@ export default function Card({ StandardLinks, CustomLinks, theme, heroData }) {
                   theme === "dahwoo" ||
                   theme === "etyne" ||
                   theme === "neotronic" ||
-                  theme === "neotronicTest"
+                  theme === "essence"
                 ) {
                   return (
                     <a
@@ -251,7 +261,7 @@ export default function Card({ StandardLinks, CustomLinks, theme, heroData }) {
                       className={
                         theme === "dahwoo"
                           ? "theme_dahwoo-card"
-                          : "neotronicIcon"
+                          : "neotronicIcon social_media-icon"
                       }
                       target="_blank"
                       rel="noopener noreferrer"
@@ -271,7 +281,7 @@ export default function Card({ StandardLinks, CustomLinks, theme, heroData }) {
 
                 return (
                   <a
-                    className="card"
+                    className="card w-100"
                     key={id}
                     href={link}
                     target="_blank"
@@ -320,6 +330,7 @@ export default function Card({ StandardLinks, CustomLinks, theme, heroData }) {
                     href={value.URL}
                     target="_blank"
                     rel="noopener noreferrer"
+                    className="w-100"
                   >
                     <NeumorphicContainer
                       containerclassName="mt-4 round-10 d-flex"
@@ -347,6 +358,52 @@ export default function Card({ StandardLinks, CustomLinks, theme, heroData }) {
                       )}
                       <p>{value.Title ? value.Title : value.Name}</p>
                     </NeumorphicContainer>
+                  </a>
+                );
+              }
+              if (theme === "essence") {
+                return (
+                  <a
+                    key={id}
+                    href={value.URL}
+                    className={
+                      value.Title
+                        ? "col-6 d-flex flex-direction-column customLinkCard"
+                        : "col-6 d-flex flex-direction-column customLinkCard justify-content-end"
+                    }
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {value.Title ? (
+                      <div className="customCard_dahwoo-bottom mb-2">
+                        <p>{value.Title ? value.Title : value.Name}</p>
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                    <img className="img-fluid" src={value.IconUrl} alt="" />
+                  </a>
+                );
+              }
+              if (theme === "neotronic") {
+                return (
+                  <a
+                    key={id}
+                    href={value.URL}
+                    className={
+                      value.IconUrl === null ? "card" : "card cardPadding w-100"
+                    }
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {!(value.IconUrl === null) ? (
+                      <div className="card_icon bg-bannner">
+                        <img className="img-fluid" src={value.IconUrl} alt="" />
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                    <p>{value.Title ? value.Title : value.Name}</p>
                   </a>
                 );
               }

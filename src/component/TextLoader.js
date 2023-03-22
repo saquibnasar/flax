@@ -1,12 +1,14 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-
+import { Link } from "react-router-dom";
 export default function TextLoader({
   text,
   characterNumber,
   btnClass,
   capacityCount,
   id,
+  type,
+  theme,
 }) {
   let bioText = text.trim().split(" ");
   let primaryText = [];
@@ -41,7 +43,9 @@ export default function TextLoader({
   const showHeroDetail = (event) => {
     setChangeText(text);
     event.target.classList.add("d-none");
+    console.log(capacityCount, text.trim(), id);
     if (capacityCount < text.trim().split("").length) {
+      console.log(capacityCount);
       const loaderTest = document.getElementById(id);
       loaderTest.classList.add("capacity");
     }
@@ -50,12 +54,29 @@ export default function TextLoader({
   return (
     <>
       {changeText}{" "}
-      {subText.length ? (
-        <button className={`extra-btn ${btnClass}`} onClick={showHeroDetail}>
-          ...more
-        </button>
+      {theme === "essence" && type === "slider" ? (
+        <>
+          {subText.length ? (
+            <Link to="/EssenceLayout" className={`extra-btn ${btnClass}`}>
+              ...more
+            </Link>
+          ) : (
+            ""
+          )}
+        </>
       ) : (
-        ""
+        <>
+          {subText.length ? (
+            <button
+              className={`extra-btn ${btnClass}`}
+              onClick={showHeroDetail}
+            >
+              ...more
+            </button>
+          ) : (
+            ""
+          )}
+        </>
       )}
     </>
   );

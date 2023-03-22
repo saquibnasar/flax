@@ -9,7 +9,14 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { faParagraph } from "@fortawesome/free-solid-svg-icons";
 import { faHeading } from "@fortawesome/free-solid-svg-icons";
-export default function Slider({ data, linkHandler, isClosed, theme, mode }) {
+export default function Slider({
+  data,
+  linkHandler,
+  isClosed,
+  theme,
+  mode,
+  EssenceLayout,
+}) {
   const [currentPage, setCurrentPage] = useState(0);
   const [title, setTitle] = useState(data[0].Title);
   const [subTitle, setSubTitle] = useState(data[0].SubTitle);
@@ -44,9 +51,20 @@ export default function Slider({ data, linkHandler, isClosed, theme, mode }) {
       setCurrentPage(current);
     },
   };
+  const settingsEssence = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    // variableWidth: true,
+    // centerPadding: "150px",
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    afterChange: (current) => {
+      changeTextHandler(current);
+      setCurrentPage(current);
+    },
+  };
   const slider = data.filter((data) => data.isActive === true);
-  console.log(slider);
-  console.log(slider.length);
 
   const sliderRef = useRef();
 
@@ -141,12 +159,13 @@ export default function Slider({ data, linkHandler, isClosed, theme, mode }) {
                           <div className="">
                             {title && title.trim() ? (
                               <div className="swiper-content">
-                                <h4 id="slider__title">
+                                <h4 id="slider__title" className="d-none">
                                   <TextLoader
                                     text={title}
                                     id="slider__title"
                                     characterNumber="50"
                                     btnClass="slider__btn"
+                                    capacityCount={140}
                                   />
                                 </h4>
                               </div>
@@ -159,12 +178,13 @@ export default function Slider({ data, linkHandler, isClosed, theme, mode }) {
                                   sliderUrl && sliderUrl.trim() ? "round-0" : ""
                                 } swiper-content`}
                               >
-                                <pre className="" id="slider__para">
+                                <pre className="d-none" id="slider__para">
                                   <TextLoader
                                     text={subTitle}
                                     id="slider__para"
                                     characterNumber="104"
                                     btnClass="slider__btn"
+                                    capacityCount={191}
                                   />
                                 </pre>
                               </div>
@@ -172,14 +192,79 @@ export default function Slider({ data, linkHandler, isClosed, theme, mode }) {
                               ""
                             )}
                           </div>
-                          <button
-                            className="sliderBtn"
-                            onClick={() => {
-                              sliderRef.current.slickNext();
-                            }}
-                          >
-                            <FontAwesomeIcon icon={faArrowRight} />
-                          </button>
+                          <div className="sliderBtn_container">
+                            {title && title.trim() ? (
+                              <button
+                                className="sliderBtn sliderBtn_heading"
+                                onClick={() => {
+                                  const slider__title =
+                                    document.querySelector("#slider__title");
+                                  const slider__para =
+                                    document.querySelector("#slider__para");
+                                  if (
+                                    !slider__para.classList.contains("d-none")
+                                  ) {
+                                    slider__para.classList.add("d-none");
+                                  }
+                                  if (
+                                    slider__title.classList.contains("d-none")
+                                  ) {
+                                    slider__title.classList.remove("d-none");
+                                  } else {
+                                    slider__title.classList.add("d-none");
+                                  }
+                                }}
+                              >
+                                <FontAwesomeIcon icon={faHeading} />
+                              </button>
+                            ) : (
+                              ""
+                            )}
+                            {subTitle && subTitle.trim() ? (
+                              <button
+                                className="sliderBtn sliderBtn_paragraph"
+                                onClick={() => {
+                                  const slider__title =
+                                    document.querySelector("#slider__title");
+                                  const slider__para =
+                                    document.querySelector("#slider__para");
+                                  if (
+                                    !slider__title.classList.contains("d-none")
+                                  ) {
+                                    slider__title.classList.add("d-none");
+                                  }
+                                  if (
+                                    slider__para.classList.contains("d-none")
+                                  ) {
+                                    slider__para.classList.remove("d-none");
+                                  } else {
+                                    slider__para.classList.add("d-none");
+                                  }
+                                }}
+                              >
+                                <FontAwesomeIcon icon={faParagraph} />
+                              </button>
+                            ) : (
+                              ""
+                            )}
+                            {slider.length > 1 ? (
+                              <button
+                                className="sliderBtn"
+                                onClick={() => {
+                                  sliderRef.current.slickNext();
+                                  const capacity =
+                                    document.querySelector(".capacity");
+                                  if (capacity) {
+                                    capacity.classList.remove("capacity");
+                                  }
+                                }}
+                              >
+                                <FontAwesomeIcon icon={faArrowRight} />
+                              </button>
+                            ) : (
+                              ""
+                            )}
+                          </div>
                           {sliderUrl && sliderUrl.trim() ? (
                             <a
                               href={sliderUrl}
@@ -197,78 +282,154 @@ export default function Slider({ data, linkHandler, isClosed, theme, mode }) {
                         </div>
                       </div>
                     ) : (
-                      <div className="imgSliderDirect">
-                        <div
-                          className={
-                            theme === "etyne" ||
-                            theme === "dahwoo" ||
-                            theme === "phiverse"
-                              ? "slider overflow-hidden d-flex flex-direction-column"
-                              : "slider overflow-hidden"
-                          }
-                        >
-                          <div className={isClosed ? "order-2" : ""}>
-                            <ImgSlider
-                              settings={settings}
-                              sliderImg={data}
-                              className="round-0"
-                            />
-                          </div>
-                        </div>
-                        {title && title.trim() ? (
-                          <div
-                            className={
-                              isClosed
-                                ? "swiper-content round-0 order-1"
-                                : "swiper-content round-0"
-                            }
-                          >
-                            <h4 id="slider__title">
-                              <TextLoader
-                                text={title}
-                                id="slider__title"
-                                characterNumber="50"
-                                btnClass="slider__btn"
-                              />
-                            </h4>
-                          </div>
-                        ) : (
-                          ""
-                        )}
-                        {subTitle && subTitle.trim() ? (
-                          <div
-                            className={
-                              isClosed
-                                ? `${
-                                    sliderUrl && sliderUrl.trim()
-                                      ? "round-0"
-                                      : ""
-                                  } swiper-content order-3`
-                                : `${
-                                    sliderUrl && sliderUrl.trim()
-                                      ? "round-0"
-                                      : ""
-                                  } swiper-content`
-                            }
-                          >
-                            <pre
-                              className={
-                                theme === "dahwoo" ? "slider_bottom-para" : ""
+                      <>
+                        {theme === "essence" ? (
+                          <div className="slider overflow-hidden row">
+                            {data.map((value, id) => {
+                              if (value.isActive) {
+                                return (
+                                  <div
+                                    key={id}
+                                    className="swiper-slide col-6 d-flex flex-direction-column"
+                                  >
+                                    {value.Title && value.Title.trim() ? (
+                                      <div className="swiper-content">
+                                        <h4 id="slider__title">
+                                          <TextLoader
+                                            text={value.Title}
+                                            id="slider__title"
+                                            characterNumber="50"
+                                            btnClass="slider__btn"
+                                            capacityCount={140}
+                                            theme={theme}
+                                            type="slider"
+                                          />
+                                        </h4>
+                                      </div>
+                                    ) : (
+                                      ""
+                                    )}
+                                    <div className="p-relative">
+                                      {sliderUrl && sliderUrl.trim() ? (
+                                        <a
+                                          href={sliderUrl}
+                                          className="neotronicLink"
+                                          target="blank"
+                                        >
+                                          <p className="neotronicLink_text">
+                                            Click here for link
+                                          </p>
+                                          <FontAwesomeIcon icon={faLink} />
+                                        </a>
+                                      ) : (
+                                        ""
+                                      )}
+                                      <img
+                                        className="img-fluid"
+                                        src={value.URL}
+                                        alt=""
+                                      />
+                                    </div>
+                                    {value.SubTitle && value.SubTitle.trim() ? (
+                                      <div className="swiper-content">
+                                        <pre id="slider__para">
+                                          <TextLoader
+                                            text={value.SubTitle}
+                                            id="slider__para"
+                                            characterNumber="104"
+                                            btnClass="slider__btn"
+                                            capacityCount={191}
+                                            theme={theme}
+                                            type="slider"
+                                          />
+                                        </pre>
+                                      </div>
+                                    ) : (
+                                      ""
+                                    )}
+                                  </div>
+                                );
                               }
-                              id="slider__para"
-                            >
-                              <TextLoader
-                                text={subTitle}
-                                id="slider__para"
-                                characterNumber="104"
-                                btnClass="slider__btn"
-                              />
-                            </pre>
+                              return "";
+                            })}
                           </div>
                         ) : (
-                          ""
+                          <div className="imgSliderDirect">
+                            <div
+                              className={
+                                theme === "etyne" ||
+                                theme === "dahwoo" ||
+                                theme === "phiverse"
+                                  ? "slider overflow-hidden d-flex flex-direction-column"
+                                  : "slider overflow-hidden"
+                              }
+                            >
+                              <div className={isClosed ? "order-2" : ""}>
+                                <ImgSlider
+                                  settings={settings}
+                                  sliderImg={data}
+                                  className="round-0"
+                                />
+                              </div>
+                            </div>
+                            {title && title.trim() ? (
+                              <div
+                                className={
+                                  isClosed
+                                    ? "swiper-content round-0 order-1"
+                                    : "swiper-content round-0"
+                                }
+                              >
+                                <h4 id="slider__title">
+                                  <TextLoader
+                                    text={title}
+                                    id="slider__title"
+                                    characterNumber="50"
+                                    btnClass="slider__btn"
+                                  />
+                                </h4>
+                              </div>
+                            ) : (
+                              ""
+                            )}
+                            {subTitle && subTitle.trim() ? (
+                              <div
+                                className={
+                                  isClosed
+                                    ? `${
+                                        sliderUrl && sliderUrl.trim()
+                                          ? "round-0"
+                                          : ""
+                                      } swiper-content order-3`
+                                    : `${
+                                        sliderUrl && sliderUrl.trim()
+                                          ? "round-0"
+                                          : ""
+                                      } swiper-content`
+                                }
+                              >
+                                <pre
+                                  className={
+                                    theme === "dahwoo"
+                                      ? "slider_bottom-para"
+                                      : ""
+                                  }
+                                  id="slider__para"
+                                >
+                                  <TextLoader
+                                    text={subTitle}
+                                    id="slider__para"
+                                    characterNumber="104"
+                                    btnClass="slider__btn"
+                                  />
+                                </pre>
+                              </div>
+                            ) : (
+                              ""
+                            )}
+                          </div>
                         )}
-                      </div>
+                      </>
                     )}
                   </>
                 )}
@@ -349,9 +510,16 @@ export default function Slider({ data, linkHandler, isClosed, theme, mode }) {
                         )}
                       </NeumorphicContainer>
                     </div>
-                    <div className="d-flex justify-content-center mt-2">
-                      <CloseBtn linkHandler={linkHandler} mode="neuMorphism" />
-                    </div>
+                    {!isClosed && title ? (
+                      <div className="d-flex justify-content-center mt-2">
+                        <CloseBtn
+                          linkHandler={linkHandler}
+                          mode="neuMorphism"
+                        />
+                      </div>
+                    ) : (
+                      ""
+                    )}
                   </>
                 ) : (
                   <>
@@ -491,106 +659,224 @@ export default function Slider({ data, linkHandler, isClosed, theme, mode }) {
                       </>
                     ) : (
                       <>
-                        <div
-                          className={
-                            theme === "etyne" ||
-                            theme === "dahwoo" ||
-                            theme === "phiverse"
-                              ? "slider overflow-hidden d-flex flex-direction-column"
-                              : "slider overflow-hidden"
-                          }
-                        >
-                          <div className={isClosed ? "order-2" : ""}>
-                            <ImgSlider
-                              settings={settings}
-                              sliderImg={data}
-                              className="round-0"
-                            />
-                          </div>
-                          {title && title.trim() ? (
-                            <div
-                              className={
-                                isClosed
-                                  ? "swiper-content round-0 order-1"
-                                  : "swiper-content round-0"
-                              }
-                            >
-                              <h4 id="slider__title">
-                                <TextLoader
-                                  text={title}
-                                  id="slider__title"
-                                  characterNumber="50"
-                                  btnClass="slider__btn"
+                        {theme === "essence" ? (
+                          <>
+                            {EssenceLayout ? (
+                              <div className="slider overflow-hidden p-relative">
+                                <ImgSlider
+                                  settings={settingsEssence}
+                                  sliderImg={data}
                                 />
-                              </h4>
-                            </div>
-                          ) : (
-                            ""
-                          )}
-                          {subTitle && subTitle.trim() ? (
+                                {sliderUrl && sliderUrl.trim() ? (
+                                  <a
+                                    href={sliderUrl}
+                                    className="neotronicLink"
+                                    target="blank"
+                                  >
+                                    <p className="neotronicLink_text">
+                                      Click here for link
+                                    </p>
+                                    <FontAwesomeIcon icon={faLink} />
+                                  </a>
+                                ) : (
+                                  ""
+                                )}
+
+                                {title && title.trim() ? (
+                                  <div className="swiper-content mt-3">
+                                    <h4 id="slider__title">{title}</h4>
+                                  </div>
+                                ) : (
+                                  ""
+                                )}
+
+                                {subTitle && subTitle.trim() ? (
+                                  <div className="swiper-content">
+                                    <pre id="slider__para">{subTitle}</pre>
+                                  </div>
+                                ) : (
+                                  ""
+                                )}
+                              </div>
+                            ) : (
+                              <div className="slider overflow-hidden row">
+                                {data.map((value, id) => {
+                                  if (value.isActive) {
+                                    return (
+                                      <div
+                                        key={id}
+                                        className="swiper-slide col-6 d-flex flex-direction-column"
+                                      >
+                                        {value.Title && value.Title.trim() ? (
+                                          <div className="swiper-content">
+                                            <h4 id="slider__title">
+                                              <TextLoader
+                                                text={value.Title}
+                                                id="slider__title"
+                                                characterNumber="50"
+                                                btnClass="slider__btn"
+                                                capacityCount={140}
+                                                theme={theme}
+                                                type="slider"
+                                              />
+                                            </h4>
+                                          </div>
+                                        ) : (
+                                          ""
+                                        )}
+                                        <div className="p-relative">
+                                          {sliderUrl && sliderUrl.trim() ? (
+                                            <a
+                                              href={sliderUrl}
+                                              className="neotronicLink"
+                                              target="blank"
+                                            >
+                                              <p className="neotronicLink_text">
+                                                Click here for link
+                                              </p>
+                                              <FontAwesomeIcon icon={faLink} />
+                                            </a>
+                                          ) : (
+                                            ""
+                                          )}
+                                          <img
+                                            className="img-fluid"
+                                            src={value.URL}
+                                            alt=""
+                                          />
+                                        </div>
+                                        {value.SubTitle &&
+                                        value.SubTitle.trim() ? (
+                                          <div className="swiper-content">
+                                            <pre id="slider__para">
+                                              <TextLoader
+                                                text={value.SubTitle}
+                                                id="slider__para"
+                                                characterNumber="104"
+                                                btnClass="slider__btn"
+                                                capacityCount={191}
+                                                theme={theme}
+                                                type="slider"
+                                              />
+                                            </pre>
+                                          </div>
+                                        ) : (
+                                          ""
+                                        )}
+                                      </div>
+                                    );
+                                  }
+                                  return "";
+                                })}
+                              </div>
+                            )}
+                          </>
+                        ) : (
+                          <>
                             <div
                               className={
-                                isClosed
-                                  ? `${
-                                      sliderUrl && sliderUrl.trim()
-                                        ? "round-0"
-                                        : ""
-                                    } swiper-content order-3`
-                                  : `${
-                                      sliderUrl && sliderUrl.trim()
-                                        ? "round-0"
-                                        : ""
-                                    } swiper-content`
+                                theme === "etyne" ||
+                                theme === "dahwoo" ||
+                                theme === "phiverse"
+                                  ? "slider overflow-hidden d-flex flex-direction-column"
+                                  : "slider overflow-hidden"
                               }
                             >
-                              <pre
-                                className={isClosed ? "slider_bottom-para" : ""}
-                                id="slider__para"
-                              >
-                                <TextLoader
-                                  text={subTitle}
-                                  id="slider__para"
-                                  characterNumber="104"
-                                  btnClass="slider__btn"
+                              <div className={isClosed ? "order-2" : ""}>
+                                <ImgSlider
+                                  settings={settings}
+                                  sliderImg={data}
+                                  className="round-0"
                                 />
-                              </pre>
+                              </div>
+                              {title && title.trim() ? (
+                                <div
+                                  className={
+                                    isClosed
+                                      ? "swiper-content round-0 order-1"
+                                      : "swiper-content round-0"
+                                  }
+                                >
+                                  <h4 id="slider__title">
+                                    <TextLoader
+                                      text={title}
+                                      id="slider__title"
+                                      characterNumber="50"
+                                      btnClass="slider__btn"
+                                    />
+                                  </h4>
+                                </div>
+                              ) : (
+                                ""
+                              )}
+                              {subTitle && subTitle.trim() ? (
+                                <div
+                                  className={
+                                    isClosed
+                                      ? `${
+                                          sliderUrl && sliderUrl.trim()
+                                            ? "round-0"
+                                            : ""
+                                        } swiper-content order-3`
+                                      : `${
+                                          sliderUrl && sliderUrl.trim()
+                                            ? "round-0"
+                                            : ""
+                                        } swiper-content`
+                                  }
+                                >
+                                  <pre
+                                    className={
+                                      isClosed ? "slider_bottom-para" : ""
+                                    }
+                                    id="slider__para"
+                                  >
+                                    <TextLoader
+                                      text={subTitle}
+                                      id="slider__para"
+                                      characterNumber="104"
+                                      btnClass="slider__btn"
+                                    />
+                                  </pre>
+                                </div>
+                              ) : (
+                                ""
+                              )}
+                              {sliderUrl && sliderUrl.trim() ? (
+                                <div
+                                  className={
+                                    mode === "shencho" || mode === "consmy"
+                                      ? "download pb-4 order-3"
+                                      : "download pb-4 order-4"
+                                  }
+                                >
+                                  <a
+                                    href={sliderUrl}
+                                    target="_black"
+                                    className="download_btn"
+                                  >
+                                    learn more
+                                  </a>
+                                </div>
+                              ) : (
+                                ""
+                              )}
                             </div>
-                          ) : (
-                            ""
-                          )}
-                          {sliderUrl && sliderUrl.trim() ? (
                             <div
                               className={
-                                mode === "shencho" || mode === "consmy"
-                                  ? "download pb-4 order-3"
-                                  : "download pb-4 order-4"
+                                theme === "shencho" || theme === "consmy"
+                                  ? "order-4"
+                                  : "order-3"
                               }
                             >
-                              <a
-                                href={sliderUrl}
-                                target="_black"
-                                className="download_btn"
-                              >
-                                learn more
-                              </a>
+                              {!isClosed && title ? (
+                                <CloseBtn linkHandler={linkHandler} />
+                              ) : (
+                                ""
+                              )}
                             </div>
-                          ) : (
-                            ""
-                          )}
-                        </div>
-                        <div
-                          className={
-                            theme === "shencho" || theme === "consmy"
-                              ? "order-4"
-                              : "order-3"
-                          }
-                        >
-                          {!isClosed ? (
-                            <CloseBtn linkHandler={linkHandler} />
-                          ) : (
-                            ""
-                          )}
-                        </div>
+                          </>
+                        )}
                       </>
                     )}
                   </>

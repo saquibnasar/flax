@@ -1,5 +1,6 @@
 @import "./font.scss";
 @import "./custom.scss";
+@import "./mediaqueries.scss";
 .footer {
   margin-top: 80px;
   margin-bottom: 24px;
@@ -17,12 +18,18 @@
     }
   }
   P {
-    font-family: "Cairo Play";
-    font-weight: 500;
-    font-size: 15px;
-    line-height: 30px;
-    letter-spacing: 0.73px;
-    color: #141414;
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+    color: #434343;
+    span {
+      font-weight: 600;
+    }
+    @include media400 {
+      font-size: 12px;
+    }
   }
 }
 
@@ -53,6 +60,43 @@
   .footer {
     .caardClub {
       box-shadow: unset;
+    }
+  }
+}
+.theme-essence {
+  .footer {
+    h3 {
+      font-family: "Open Sans";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 21px;
+      text-align: center;
+      color: #fff;
+      margin-top: 16px;
+      text-align: center;
+    }
+    h5 {
+      font-family: "Open Sans";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 15px;
+      line-height: 21px;
+      text-align: center;
+      color: #fff;
+      margin-top: 4px;
+      margin-bottom: 24px;
+      text-align: center;
+      a {
+        font-family: "Open Sans";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 21px;
+        text-align: center;
+        display: inline;
+        color: #fff;
+      }
     }
   }
 }

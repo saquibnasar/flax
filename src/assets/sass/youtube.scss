@@ -26,7 +26,6 @@
     height: 100%;
     top: 0;
     left: 0;
-
     border: 0.6px solid #9c9c9c;
     border-radius: 8px;
     border-bottom-left-radius: 8px;
@@ -192,42 +191,65 @@
     .react-player__preview {
       border-radius: 6px;
     }
-    .swiper-content {
-      position: absolute;
-      bottom: 0;
-      z-index: 1;
-      width: 100%;
-      height: 78px;
-      overflow-y: scroll;
-      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
-      border-radius: 0px 0px 6px 6px;
-      padding-left: 16px;
-      p {
-        width: 60%;
-        font-family: "Poppins";
-        font-style: normal;
-        font-weight: 600;
-        font-size: 24px;
-        line-height: 36px;
-        cursor: all-scroll;
-        @include media574px {
-          width: 65%;
-        }
-        @include media474px {
-          width: 67%;
-        }
-        .extra-btn {
-          font-family: "Poppins";
-          font-style: normal;
-          font-weight: 600;
-          font-size: 24px;
-          line-height: 36px;
-          color: #424c6e;
-        }
-      }
-    }
+    // .swiper-content {
+    //   position: absolute;
+    //   bottom: 0;
+    //   z-index: 1;
+    //   width: 100%;
+    //   height: 78px;
+    //   overflow-y: scroll;
+    //   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
+    //   border-radius: 0px 0px 6px 6px;
+    //   padding-left: 16px;
+    //   p {
+    //     width: 60%;
+    //     font-family: "Poppins";
+    //     font-style: normal;
+    //     font-weight: 600;
+    //     font-size: 24px;
+    //     line-height: 36px;
+    //     cursor: all-scroll;
+    //     @include media574px {
+    //       width: 65%;
+    //     }
+    //     @include media474px {
+    //       width: 67%;
+    //     }
+    //     .extra-btn {
+    //       font-family: "Poppins";
+    //       font-style: normal;
+    //       font-weight: 600;
+    //       font-size: 24px;
+    //       line-height: 36px;
+    //       color: #424c6e;
+    //     }
+    //   }
+    // }
     .swiper-content::-webkit-scrollbar {
       display: none;
+    }
+    .sliderBtn_container {
+      position: absolute;
+      bottom: 24px;
+      right: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 1;
+    }
+    .sliderBtn {
+      width: 56px;
+      height: 56px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      background: #241f50;
+      box-shadow: -10px -10px 20px rgb(50 50 50 / 25%),
+        10px 10px 20px rgb(36 31 80 / 20%);
+      border-radius: 50px;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 }
@@ -253,6 +275,24 @@
       padding: 0px;
       background: transparent;
       border-radius: 0px;
+    }
+  }
+}
+.theme-essence {
+  .youtube {
+    .EmbeddedYouTube_embeddedVideoIframe__BnmH8,
+    .EmbeddedYouTube_embeddedVideoThumbnail__X8kI_,
+    .EmbeddedYouTube_featuredLinkEmbeddedVideo__GERzu {
+      border: none;
+    }
+    .react-player__preview {
+      border-radius: 6px;
+      box-shadow: 1px 1px 10px #999999;
+    }
+  }
+  .videoDirect {
+    .react-player__preview {
+      border-radius: 16px;
     }
   }
 }

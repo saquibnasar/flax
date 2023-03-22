@@ -215,8 +215,9 @@
 .theme-buwayne {
   .card-section {
     .card {
-      padding-right: 72px;
-      padding-left: 24px;
+      // padding-right: 72px;
+      // padding-left: 24px;
+      padding: 24px 72px 24px 24px;
       .card_icon {
         display: flex;
         justify-content: center;
@@ -225,7 +226,7 @@
         height: 50px;
         svg {
           font-size: 1.5rem;
-          color: #fcfdff;
+          color: #555e6e;
           box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.1);
         }
         .icon {
@@ -268,6 +269,57 @@
           color: #60656b;
         }
       }
+    }
+    .card:hover {
+      box-shadow: inset -6px -6px 16px 0 rgb(51 51 51 / 50%),
+        inset 6px 6px 16px 0 rgb(0 0 0 / 50%);
+      .card_icon {
+        .icon {
+          box-shadow: inset -6px -6px 16px 0 rgb(51 51 51 / 50%),
+            inset 6px 6px 16px 0 rgb(0 0 0 / 50%);
+        }
+      }
+      .content_operator-icon {
+        box-shadow: inset -6px -6px 16px 0 rgb(51 51 51 / 50%),
+          inset 6px 6px 16px 0 rgb(0 0 0 / 50%);
+      }
+    }
+  }
+}
+.theme-riorpad {
+  .card-section {
+    .card {
+      .card_icon {
+        svg {
+          color: #60656b;
+          box-shadow: -4px -4px 12px rgba(236, 236, 236, 0.05),
+            4px 4px 12px rgba(0, 0, 0, 0.1);
+        }
+      }
+      .svgIcon {
+        svg {
+          color: #555e6e;
+        }
+      }
+    }
+    .card:hover {
+      box-shadow: inset -6px -6px 16px 0 rgb(255 255 255 / 50%),
+        inset 6px 6px 16px 0 rgb(209 205 199 / 50%);
+      .card_icon {
+        .icon {
+          box-shadow: inset -6px -6px 16px 0 rgb(255 255 255 / 50%),
+            inset 6px 6px 16px 0 rgb(209 205 199 / 50%);
+        }
+      }
+      .content_operator-icon {
+        box-shadow: inset -6px -6px 16px 0 rgb(255 255 255 / 50%),
+          inset 6px 6px 16px 0 rgb(209 205 199 / 50%);
+      }
+    }
+  }
+  .neumorphic-btn {
+    button {
+      color: #555e6e;
     }
   }
 }
@@ -329,6 +381,48 @@
           }
         }
       }
+    }
+  }
+}
+.theme-essence {
+  .social_media-icon {
+    width: 70px;
+    height: 70px;
+    background: $white-color;
+    border-radius: 11.83px;
+    color: $black-color;
+    font-size: 1.9rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    @include media474px {
+      width: 60px;
+      height: 60px;
+    }
+  }
+  .customCard_dahwoo-bottom {
+    p {
+      font-family: "Open Sans";
+      font-style: normal;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 25px;
+      color: #fff;
+      text-align: start;
+      margin-bottom: 13px;
+    }
+  }
+  .customLinkCard {
+    img {
+      height: 210px;
+      border-radius: 6px;
+      @include media474px {
+        height: 100%;
+      }
+    }
+    .customCard_dahwoo-bottom {
+      flex: 1 1;
     }
   }
 }

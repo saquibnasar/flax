@@ -132,11 +132,17 @@
 .justify-content-end {
   justify-content: end !important;
 }
+.justify-content-between {
+  justify-content: space-between !important;
+}
 .flex-direction-column {
   flex-direction: column !important;
 }
 .align-items-center {
   align-items: center !important;
+}
+.z-1 {
+  z-index: 1;
 }
 .order-1 {
   order: 1 !important;
@@ -169,7 +175,7 @@
   height: 0px;
 }
 .h-100 {
-  height: 100%;
+  height: 100% !important;
 }
 .w-51px {
   width: 51px;
@@ -231,6 +237,9 @@
 }
 .mt-2 {
   margin-top: 0.5rem !important;
+}
+.mb-2 {
+  margin-bottom: 0.5rem !important;
 }
 .mt-0 {
   margin-top: 0rem !important;
@@ -307,6 +316,9 @@
 .p-relative {
   position: relative;
 }
+.p-initial {
+  position: initial;
+}
 .p-fixed {
   position: fixed !important;
 }
@@ -355,10 +367,10 @@
   }
   h1 {
     color: $white-color;
-    font-family: "Poppins";
+    font-family: "Poppins" !important;
     font-style: normal;
     font-weight: 600;
-    font-size: 17px;
+    font-size: 17px !important;
     line-height: 23px;
     text-align: center;
   }
@@ -482,14 +494,31 @@
     transform: rotate(45deg);
   }
 }
+
 .neotronicLink:hover {
   .neotronicLink_text {
     opacity: 1;
   }
 }
-// .essenceLink::after {
-//   content: "sfdk";
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-// }
+.theme-essence {
+  .neotronicLink {
+    top: 16px;
+    left: 8px;
+    font-size: 1.5rem;
+  }
+}
+.spotify {
+  border-radius: 12px;
+  box-shadow: 1px 1px 10px #999999;
+}
+
+// #d6d3d3
+.PageNotFound_footer {
+  @include media390 {
+    bottom: 0;
+    left: 15%;
+    position: absolute;
+    transform: translateX(-9%);
+    width: 85%;
+  }
+}

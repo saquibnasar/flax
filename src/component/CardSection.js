@@ -36,8 +36,8 @@ export default function CardSection({ modeData, theme, heroData, mode }) {
 
   return (
     <>
-      <section className="card-section">
-        <div className="container">
+      <section className="card-section ">
+        <div className="container d-flex flex-direction-column z-1">
           {mode === "direct" ? (
             <>
               {isSliderValueTrue ? (
@@ -75,75 +75,99 @@ export default function CardSection({ modeData, theme, heroData, mode }) {
             </>
           ) : (
             <>
-              {StandardLinks.length || CustomLinks.length ? (
-                <>
-                  <Card
-                    StandardLinks={StandardLinks}
-                    CustomLinks={CustomLinks}
-                    theme={theme}
-                    heroData={heroData}
-                  />
-                </>
-              ) : (
-                ""
-              )}
-              {isSliderValueTrue ? (
-                <>
-                  {theme === "buwayne" ||
-                  theme === "shencho" ||
-                  theme === "consmy" ||
-                  theme === "riorpad" ? (
-                    <>
-                      {JSON.parse(modeData.Slider.Links).length &&
-                      JSON.parse(modeData.Slider.isActive) ? (
-                        <>
-                          {sliderIsTrue ? (
-                            <CardLinks
-                              title={JSON.parse(modeData.Slider.Links)[0].Title}
-                              linkHandler={linkHandler.bind(this, "slider")}
-                              mode={theme}
-                            />
-                          ) : (
+              <div className={`order-${modeData.StandardLinks.Order + 1} z-1`}>
+                {StandardLinks.length ? (
+                  <>
+                    <Card
+                      StandardLinks={StandardLinks}
+                      CustomLinks={CustomLinks}
+                      theme={theme}
+                      heroData={heroData}
+                    />
+                  </>
+                ) : (
+                  ""
+                )}
+              </div>
+              <div className={`order-${modeData.CustomLinks.Order + 1} z-1`}>
+                {CustomLinks.length ? (
+                  <>
+                    <Card
+                      CustomLinks={CustomLinks}
+                      theme={theme}
+                      heroData={heroData}
+                    />
+                  </>
+                ) : (
+                  ""
+                )}
+              </div>
+              <div className={`order-${modeData.Slider.Order + 1} z-1`}>
+                {isSliderValueTrue ? (
+                  <>
+                    {modeData.Slider.Links &&
+                    modeData.Slider.isActive &&
+                    slider[0].Title &&
+                    (theme === "buwayne" ||
+                      theme === "shencho" ||
+                      theme === "consmy" ||
+                      theme === "riorpad") ? (
+                      <>
+                        {JSON.parse(modeData.Slider.Links).length &&
+                        JSON.parse(modeData.Slider.isActive) ? (
+                          <>
+                            {sliderIsTrue ? (
+                              <CardLinks
+                                title={
+                                  JSON.parse(modeData.Slider.Links)[0].Title
+                                }
+                                linkHandler={linkHandler.bind(this, "slider")}
+                                mode={theme}
+                              />
+                            ) : (
+                              <Slider
+                                data={JSON.parse(modeData.Slider.Links)}
+                                linkHandler={linkHandler.bind(this, "slider")}
+                                theme={theme}
+                              />
+                            )}
+                          </>
+                        ) : (
+                          ""
+                        )}
+                      </>
+                    ) : (
+                      <>
+                        {JSON.parse(modeData.Slider.Links).length &&
+                        JSON.parse(modeData.Slider.isActive) ? (
+                          <>
                             <Slider
                               data={JSON.parse(modeData.Slider.Links)}
                               linkHandler={linkHandler.bind(this, "slider")}
+                              isClosed={theme}
                               theme={theme}
                             />
-                          )}
-                        </>
-                      ) : (
-                        ""
-                      )}
-                    </>
-                  ) : (
-                    <>
-                      {JSON.parse(modeData.Slider.Links).length &&
-                      JSON.parse(modeData.Slider.isActive) ? (
-                        <>
-                          <Slider
-                            data={JSON.parse(modeData.Slider.Links)}
-                            linkHandler={linkHandler.bind(this, "slider")}
-                            isClosed={theme}
-                            theme={theme}
-                          />
-                        </>
-                      ) : (
-                        ""
-                      )}
-                    </>
-                  )}
-                </>
-              ) : (
-                ""
-              )}
-              {theme === "buwayne" ||
-              theme === "shencho" ||
-              theme === "consmy" ||
-              theme === "riorpad" ? (
-                <>
-                  {modeData.Document.URL &&
-                  modeData.Document.Title &&
-                  modeData.Document.isActive ? (
+                          </>
+                        ) : (
+                          ""
+                        )}
+                      </>
+                    )}
+                  </>
+                ) : (
+                  ""
+                )}
+              </div>
+
+              <div className={`order-${modeData.Document.Order + 1} z-1`}>
+                {modeData.Document.URL &&
+                modeData.Document.isActive &&
+                modeData.Document.Title &&
+                (theme === "buwayne" ||
+                  theme === "shencho" ||
+                  theme === "consmy" ||
+                  theme === "riorpad") ? (
+                  <>
                     <>
                       {documentsIsTrue ? (
                         <CardLinks
@@ -159,66 +183,71 @@ export default function CardSection({ modeData, theme, heroData, mode }) {
                         />
                       )}
                     </>
-                  ) : (
-                    ""
-                  )}
-                </>
-              ) : (
-                <>
-                  {modeData.Document.URL && modeData.Document.isActive ? (
-                    <>
-                      <Documents
-                        data={modeData.Document}
-                        linkHandler={linkHandler.bind(this, "document")}
-                        isClosed={theme}
-                        theme={theme}
-                      />
-                    </>
-                  ) : (
-                    ""
-                  )}
-                </>
-              )}
-              {theme === "phiverse" ||
-              theme === "dahwoo" ||
-              theme === "etyne" ? (
-                <>
-                  {modeData.FeaturedVideo && modeData.FeaturedVideo.isActive ? (
-                    <>
-                      <Video
-                        data={modeData.FeaturedVideo}
-                        linkHandler={linkHandler.bind(this, "video")}
-                        isClosed={theme}
-                        theme={theme}
-                      />
-                    </>
-                  ) : (
-                    ""
-                  )}
-                </>
-              ) : (
-                <>
-                  {modeData.FeaturedVideo && modeData.FeaturedVideo.isActive ? (
-                    <>
-                      {videoIsTrue ? (
-                        <CardLinks
-                          title={modeData.FeaturedVideo.Title}
-                          linkHandler={linkHandler.bind(this, "video")}
-                          mode={theme}
+                  </>
+                ) : (
+                  <>
+                    {modeData.Document.URL && modeData.Document.isActive ? (
+                      <>
+                        <Documents
+                          data={modeData.Document}
+                          linkHandler={linkHandler.bind(this, "document")}
+                          isClosed={theme}
+                          theme={theme}
                         />
-                      ) : (
+                      </>
+                    ) : (
+                      ""
+                    )}
+                  </>
+                )}
+              </div>
+              <div className={`order-${modeData.FeaturedVideo.Order + 1} z-1`}>
+                {(modeData.FeaturedVideo &&
+                  !modeData.FeaturedVideo.Title &&
+                  modeData.FeaturedVideo.isActive) ||
+                theme === "phiverse" ||
+                theme === "dahwoo" ||
+                theme === "etyne" ? (
+                  <>
+                    {modeData.FeaturedVideo &&
+                    modeData.FeaturedVideo.isActive ? (
+                      <>
                         <Video
                           data={modeData.FeaturedVideo}
                           linkHandler={linkHandler.bind(this, "video")}
+                          isClosed={theme}
                           theme={theme}
                         />
-                      )}
-                    </>
-                  ) : (
-                    ""
-                  )}
-                </>
-              )}
+                      </>
+                    ) : (
+                      ""
+                    )}
+                  </>
+                ) : (
+                  <>
+                    {modeData.FeaturedVideo &&
+                    modeData.FeaturedVideo.isActive ? (
+                      <>
+                        {videoIsTrue ? (
+                          <CardLinks
+                            title={modeData.FeaturedVideo.Title}
+                            linkHandler={linkHandler.bind(this, "video")}
+                            mode={theme}
+                          />
+                        ) : (
+                          <Video
+                            data={modeData.FeaturedVideo}
+                            linkHandler={linkHandler.bind(this, "video")}
+                            theme={theme}
+                          />
+                        )}
+                      </>
+                    ) : (
+                      ""
+                    )}
+                  </>
+                )}
+              </div>
             </>
           )}
         </div>
