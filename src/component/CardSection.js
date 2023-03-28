@@ -80,7 +80,6 @@ export default function CardSection({ modeData, theme, heroData, mode }) {
                   <>
                     <Card
                       StandardLinks={StandardLinks}
-                      CustomLinks={CustomLinks}
                       theme={theme}
                       heroData={heroData}
                     />
@@ -92,11 +91,7 @@ export default function CardSection({ modeData, theme, heroData, mode }) {
               <div className={`order-${modeData.CustomLinks.Order + 1} z-1`}>
                 {CustomLinks.length ? (
                   <>
-                    <Card
-                      CustomLinks={CustomLinks}
-                      theme={theme}
-                      heroData={heroData}
-                    />
+                    <Card CustomLinks={CustomLinks} theme={theme} />
                   </>
                 ) : (
                   ""

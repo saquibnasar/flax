@@ -1,30 +1,83 @@
 @import "./font.scss";
 @import "./custom.scss";
 @import "./mediaqueries.scss";
-.main-container:has(.pnf) {
+.main-container:has(.pnf_section) {
   max-width: 768px;
+  background: transparent;
 }
 #root:has(.pnf) {
   background: #fff;
 }
 .pnf {
+  background-image: url("../images/15151445_5559852.jpg");
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
   h1 {
-    font-family: "Open Sans";
+    font-family: "Ubuntu", sans-serif;
     font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
+    font-weight: 500;
+    font-size: 32px;
     line-height: 36px;
-
-    color: #7d7d7d;
     margin-top: 1.5rem;
+    color: #010718;
+    overflow: hidden;
+    .pnf_animationTest_first {
+      color: $white-color;
+    }
+    .pnf_animationTest_sec {
+      overflow: hidden;
+      animation: animeText 4s steps(16) infinite;
+      position: relative;
+      display: inline-block;
+      span {
+        position: relative;
+        width: 330px;
+        display: block;
+      }
+    }
+
+    @keyframes animeText {
+      0%,
+      90%,
+      100% {
+        width: 0;
+      }
+      30%,
+      60% {
+        width: 330px;
+      }
+    }
+
+    .pnf_animationTest_sec::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+      width: 2px;
+      background: #e9f3fc;
+      animation: blinkCursor 8s steps(3) infinite;
+    }
+    @keyframes blinkCursor {
+      0%,
+      75% {
+        opacity: 1;
+      }
+      76%,
+      100% {
+        opacity: 0;
+      }
+    }
   }
   h2 {
-    font-family: "Open Sans";
+    font-family: "Ubuntu", sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 20px;
     line-height: 24px;
-    color: #7d7d7d;
+    color: #ffffff;
     margin-top: 8px;
     a {
       color: #555e6e;
@@ -45,9 +98,23 @@
     @include media400 {
       gap: 1rem;
     }
-    img {
-      @include media400 {
-        width: 90%;
+  }
+  .pnf_footer {
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    transform: translate(-50%);
+    .footer {
+      margin-top: 40px;
+      p {
+        color: $white-color;
+      }
+    }
+    .PageNotFound_footer {
+      @include media390 {
+        position: unset;
+        transform: unset;
+        width: unset;
       }
     }
   }

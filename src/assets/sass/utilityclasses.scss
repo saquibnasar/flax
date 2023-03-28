@@ -126,6 +126,14 @@
 .d-block {
   display: block !important;
 }
+.d-inline-block {
+  display: inline-block !important;
+}
+@include media500 {
+  .d-sm-500-none {
+    display: none;
+  }
+}
 .justify-content-center {
   justify-content: center !important;
 }
@@ -265,6 +273,9 @@
 }
 .pb-3 {
   padding-bottom: 1rem;
+}
+.text-underline {
+  text-decoration: underline;
 }
 
 .cardPadding {

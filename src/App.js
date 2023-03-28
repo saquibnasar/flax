@@ -6,6 +6,7 @@ import HomeMode from "./component/HomeMode";
 import PageNotFound from "./component/PageNotFound";
 import EssenceLayout from "./component/Theme/essence/EssenceLayout";
 import { useState } from "react";
+// import HomePage from "./component/HomePage";
 
 function App() {
   const [data, setData] = useState();
@@ -40,7 +41,7 @@ function App() {
               />
             }
           />
-          <Route path="*" element={<PageNotFound />} />
+          <Route path="/" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
     </>
