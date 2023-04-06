@@ -1,30 +1,43 @@
 import React from "react";
-import pageNotFound from "../assets/images/15151445_5559852.jpg";
 import Footer from "./Footer";
 import appStore from "../assets/images/appStore.svg";
 import playStore from "../assets/images/playstore.svg";
-// import footer from "../assets/images/footerImage.svg";
+import pageNotFound from "../assets/images/pageNotFound.png";
 
 export default function PageNotFound() {
-  // const textLoader = () => {
-  //   const pnf_animationTest_sec = document.querySelector(
-  //     ".pnf_animationTest_sec"
-  //   );
-  //   console.log(pnf_animationTest_sec);
-  //   if (pnf_animationTest_sec) {
-  //     setTimeout(() => {
-  //       pnf_animationTest_sec.textContent = "IN ONE";
-  //     }, 0);
-  //     setTimeout(() => {
-  //       pnf_animationTest_sec.textContent = "";
-  //     }, 4000);
-  //   }
-  // };
-  // textLoader();
-  // setInterval(() => textLoader(), 8000);
   return (
     <>
       <div className="pnf">
+        <div className="main-container">
+          <section className="pnf_section">
+            <div className="text-center">
+              <h1>The page you’re looking for doesn’t exist.</h1>
+              <h2>
+                This web URL could be your’s. Claim now for free. by download{" "}
+                <a href="https://caard.in">Flax App</a>
+              </h2>
+              <img src={pageNotFound} alt="" className="img-fluid mt-3" />
+              <div className="pnf_link">
+                <a
+                  href="https://apps.apple.com/in/app/caard-digital-business-card/id1626948504"
+                  target="blank"
+                >
+                  <img className="img-fluid mt-3" src={appStore} alt="" />
+                </a>
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.caard.caard_frontend_final"
+                  target="blank"
+                >
+                  <img className="img-fluid mt-3" src={playStore} alt="" />
+                </a>
+              </div>
+              <Footer />
+            </div>
+          </section>
+        </div>
+      </div>
+
+      {/* <div className="pnf">
         <div className="main-container">
           <section className="pnf_section">
             <div className="text-center">
@@ -46,9 +59,6 @@ export default function PageNotFound() {
 
                 <h2>
                   Say Goodbye To Coding And Hello To Creativity With Flax.Ai
-                  {/* <a target="blank" href="https://caard.in">
-                  Flax App
-                </a> */}
                 </h2>
                 <div className="pnf_link">
                   <a
@@ -64,7 +74,6 @@ export default function PageNotFound() {
                     <img className="img-fluid mt-3" src={playStore} alt="" />
                   </a>
                 </div>
-                {/* <img className="img-fluid mt-3" src={pageNotFound} alt="" /> */}
               </div>
               <div className="pnf_footer">
                 <Footer />
@@ -72,7 +81,7 @@ export default function PageNotFound() {
             </div>
           </section>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }
