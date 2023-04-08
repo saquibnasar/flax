@@ -4,10 +4,15 @@
 // import boat from "../assets/images/boat.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
-import { faDiscord } from "@fortawesome/free-brands-svg-icons";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faApple } from "@fortawesome/free-brands-svg-icons";
 import { faGooglePlay } from "@fortawesome/free-brands-svg-icons";
+import { faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import { faPhone } from "@fortawesome/free-solid-svg-icons";
+import Footer from "./Footer";
 // import logo from "../assets/images/footerImage_dark.svg";
 // import trustpilot from "../assets/images/trustpilot.svg";
 // import Group from "../assets/images/Group 8938.svg";
@@ -38,6 +43,59 @@ export default function HomePage() {
       }
     }
   });
+
+  const textLoader = (phase) => {
+    let homePage_title;
+    setInterval(() => {
+      homePage_title = document.querySelector("#homePage_title");
+    }, 1);
+    setTimeout(() => {
+      homePage_title.innerHTML = `Flax <span> one-</span>
+    <span>stop</span>
+    <span>-shop</span> <span> for</span> <span> a</span>
+    <span> seamless</span> <span> online</span> <span> presence.</span>`;
+    }, 0);
+
+    setTimeout(() => {
+      homePage_title.innerHTML = `Flax <span> Connect </span>
+      <span>your </span>
+      <span>audience </span> <span> to </span> <span> everything </span>
+      <span> you </span> <span> offer</span>`;
+    }, 3000);
+
+    setTimeout(() => {
+      homePage_title.innerHTML = `Flax <span> Create </span>
+      <span>a</span>
+      <span>stunning </span> <span> landing </span> <span> page </span>
+      <span> in </span> <span> minutes.</span>`;
+    }, 6000);
+
+    setTimeout(() => {
+      homePage_title.innerHTML = `Flax <span> Simplify </span>
+      <span>your  </span>
+      <span>social </span> <span> media </span> <span> sharing </span>
+      <span> and </span> <span> grow </span> <span> your </span> <span> following </span>`;
+    }, 9000);
+    setTimeout(() => {
+      homePage_title.innerHTML = `Flax <span> Showcase </span>
+      <span>your </span>
+      <span>online </span> <span> assets </span> <span> like </span>
+      <span> a</span> <span> pro.</span>`;
+    }, 12000);
+    setTimeout(() => {
+      homePage_title.innerHTML = `Flax <span> the </span>
+      <span>easiest </span>
+      <span>way </span> <span> to </span> <span> connect </span>
+      <span> your </span> <span> audience </span> <span> to </span>
+      <span> all </span>
+      <span> your </span>
+      <span> digital </span>
+      <span> content. </span>`;
+    }, 15000);
+  };
+
+  setTimeout(textLoader, 500);
+  setInterval(textLoader, 18000);
   return (
     <>
       {/* 
@@ -60,8 +118,8 @@ export default function HomePage() {
       {/* </Canvas> */}
       {/* </div>  */}
       <section className="homePage ">
-        <div className="d-flex justify-content-between">
-          <a href="https://www.flaxapp.co/" target="blank">
+        <div className="d-flex justify-content-between align-items-center">
+          <a href="https://www.flaxapp.co/" target="blank" className="logo">
             <svg
               width="84"
               height="32"
@@ -69,7 +127,7 @@ export default function HomePage() {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <g clip-path="url(#clip0_1237_33)">
+              <g clipPath="url(#clip0_1237_33)">
                 <path
                   d="M1.89453 25.6V6.37341H14.2116V9.29307H5.37747V14.5128H13.3667V17.4324H5.37747V25.6H1.89453ZM20.633 6.37341V25.6H17.2345V6.37341H20.633ZM28.2772 25.891C27.3634 25.891 26.5404 25.7283 25.8081 25.4029C25.0821 25.0712 24.5063 24.583 24.0808 23.9384C23.6614 23.2937 23.4518 22.4989 23.4518 21.5538C23.4518 20.7402 23.602 20.0674 23.9024 19.5354C24.2028 19.0034 24.6128 18.5778 25.1322 18.2586C25.6517 17.9394 26.2369 17.6984 26.8878 17.5357C27.5449 17.3667 28.224 17.2447 28.925 17.1696C29.7699 17.082 30.4552 17.0037 30.9809 16.9349C31.5067 16.8598 31.8884 16.7471 32.1263 16.5969C32.3704 16.4404 32.4924 16.1995 32.4924 15.8741V15.8177C32.4924 15.1105 32.2827 14.5629 31.8634 14.1748C31.4441 13.7868 30.8401 13.5928 30.0515 13.5928C29.2191 13.5928 28.5588 13.7743 28.0706 14.1373C27.5887 14.5003 27.2633 14.929 27.0943 15.4234L23.9211 14.9728C24.1715 14.0966 24.5846 13.3643 25.1604 12.776C25.7362 12.1814 26.4403 11.7371 27.2727 11.4429C28.1051 11.1425 29.0251 10.9923 30.0328 10.9923C30.7274 10.9923 31.4191 11.0736 32.1075 11.2364C32.7959 11.3991 33.4249 11.6682 33.9945 12.0437C34.564 12.413 35.0209 12.9168 35.3651 13.5552C35.7156 14.1936 35.8909 14.9916 35.8909 15.9492V25.6H32.6238V23.6192H32.5112C32.3046 24.0197 32.0136 24.3952 31.6381 24.7457C31.2688 25.0899 30.8026 25.3684 30.2393 25.5812C29.6823 25.7878 29.0282 25.891 28.2772 25.891ZM29.1596 23.3939C29.8419 23.3939 30.4333 23.2593 30.934 22.9902C31.4347 22.7148 31.8196 22.3518 32.0887 21.9011C32.3641 21.4505 32.5018 20.9592 32.5018 20.4272V18.728C32.3954 18.8156 32.2139 18.897 31.9573 18.9721C31.7069 19.0472 31.4253 19.1129 31.1124 19.1692C30.7994 19.2256 30.4896 19.2756 30.1829 19.3194C29.8763 19.3632 29.6103 19.4008 29.385 19.4321C28.878 19.5009 28.4243 19.6136 28.0237 19.7701C27.6231 19.9265 27.3071 20.1456 27.0755 20.4272C26.8439 20.7026 26.7282 21.0594 26.7282 21.4974C26.7282 22.1233 26.9566 22.5959 27.4135 22.915C27.8704 23.2342 28.4524 23.3939 29.1596 23.3939ZM42.0868 11.1801L44.9973 16.5031L47.9543 11.1801H51.55L47.2034 18.39L51.6253 25.6H48.0484L44.9973 20.4084L41.9743 25.6H38.3693L42.7628 18.39L38.4819 11.1801H42.0868Z"
                   fill="black"
@@ -90,56 +148,82 @@ export default function HomePage() {
               </defs>
             </svg>
           </a>
-          <button class="menuItem">
-            <svg class="gb_Be" focusable="false" viewBox="0 0 24 24">
+          <button className="menuItem">
+            <svg class focusable="false" viewBox="0 0 24 24">
               <path d="M6,8c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM12,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM6,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM6,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM12,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM16,6c0,1.1 0.9,2 2,2s2,-0.9 2,-2 -0.9,-2 -2,-2 -2,0.9 -2,2zM12,8c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM18,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM18,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2z"></path>
             </svg>
           </button>
           <div className="flax_link d-none">
-            <a href="https://www.instagram.com/flax.ai/" target="blank">
-              <FontAwesomeIcon icon={faInstagram} />
-              Instagram
-            </a>
-            <a href="https://discord.com/" target="blank">
-              <FontAwesomeIcon icon={faDiscord} />
-              Discord
-            </a>
-            <a href="https://twitter.com/flax.ai" target="blank">
-              <FontAwesomeIcon icon={faTwitter} />
-              Twitter
-            </a>
-
             <a
               href="https://apps.apple.com/in/app/caard-digital-business-card/id1626948504"
               target="blank"
             >
               <FontAwesomeIcon icon={faApple} />
-              Apple
+              Ios App
             </a>
             <a
               href="https://play.google.com/store/apps/details?id=com.caard.caard_frontend_final"
               target="blank"
             >
               <FontAwesomeIcon icon={faGooglePlay} />
-              Google Play
+              Play Store
+            </a>
+            <a href="https://caard.mini.store/" target="blank">
+              <FontAwesomeIcon icon={faCartShopping} />
+              Card
+            </a>
+            <a href="https://www.instagram.com/getflaxapp/" target="blank">
+              <FontAwesomeIcon icon={faInstagram} />
+              Instagram
+            </a>
+            <a href="https://twitter.com/Flaxai" target="blank">
+              <FontAwesomeIcon icon={faTwitter} />
+              Twitter
+            </a>
+            <a href="https://www.linkedin.com/company/flax-ai/" target="blank">
+              <FontAwesomeIcon icon={faLinkedinIn} />
+              Linkedin
+            </a>
+            <a href="mailto:support@flax.ai" target="blank">
+              <FontAwesomeIcon icon={faEnvelope} />
+              Support
+            </a>
+            <a href="https://wa.me/+918171698717" target="blank">
+              <FontAwesomeIcon icon={faWhatsapp} />
+              Whatsapp
+            </a>
+            <a href="tel:+918171698717" target="blank">
+              <FontAwesomeIcon icon={faPhone} />
+              Call Now
             </a>
           </div>
         </div>
 
         <div className="homePage_container">
-          <h1>
-            Flax <span> can </span> <span> outline</span> <span> your</span>{" "}
-            <span> blog</span> <span> post</span> <span> about</span>{" "}
-            <span> summer</span> <span> mocktail</span> <span> recipes</span>
+          {/* Your one-stop-shop for a seamless online presence. */}
+          <h1 id="homePage_title">
+            Flax <span> one-</span>
+            <span>stop</span>
+            <span>-shop</span> <span> for</span> <span> a</span>
+            <span> seamless</span> <span> online</span> <span> presence.</span>
           </h1>
           <p>
-            Meet Bard: your creative and helpful collaborator, here to
-            supercharge your imagination, <br /> boost your productivity, and
-            bring your ideas to life.
+            Introducing Flax: a platform designed to empower your creativity,
+            enhance your digital footprint, and transform your ideas into
+            reality. With Flax, you can easily craft stunning mini-websites that
+            capture your unique brand and style, and showcase your content and
+            passions to the world. Let Flax help you unleash your imagination
+            and elevate your online presence with its innovative tools and
+            features. Get started today and discover the limitless possibilities
+            of Flax.
           </p>
-          <h3>Bard isn’t currently supported in your country. Stay tuned!</h3>
+          <h3>
+            Flax is currently accessible globally. Stay tuned for updates!
+          </h3>
         </div>
+        <Footer />
       </section>
+
       {/* <section className="homePage d-flex flex-direction-column justify-content-center align-items-start">
         <svg
           width="203"
