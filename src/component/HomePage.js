@@ -13,6 +13,7 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import Footer from "./Footer";
+
 // import logo from "../assets/images/footerImage_dark.svg";
 // import trustpilot from "../assets/images/trustpilot.svg";
 // import Group from "../assets/images/Group 8938.svg";
